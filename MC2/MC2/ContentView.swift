@@ -14,7 +14,7 @@ var motionstate = 0
 
 struct ContentView: View {
     
-    @State var progress: CGFloat = 0.5
+    @State var progress: CGFloat = 0.7
     @State var startAnimation: CGFloat = 0
     @State var watertop: CGFloat = 0
     @State var moneDropping: CGFloat = -270
@@ -31,24 +31,16 @@ struct ContentView: View {
                 let size = proxy.size
 
                 ZStack{
-                    // MARK: Water Drop
-                    Image (systemName: "rectangle.roundedbottom.fill")
-                        .resizable()
-                        .renderingMode(.template)
-                        .aspectRatio(contentMode:.fit)
-                        .foregroundColor(.white)
-                        .frame(width: size.width / 1.2)
-                        .scaleEffect(x: 1.1, y: 1)
-
                     //wave effect
-                    WaterWave(progress: progress, waveHeight: 0.05, offset: startAnimation)
+                    WaterWave(progress: progress, waveHeight: 0.03, offset: startAnimation)
                         .fill(Color("Blue"))
                 }
                 .mask {
-                    Image(systemName: "rectangle.roundedbottom.fill")
-                        .resizable()
-                        .aspectRatio (contentMode: .fit)
-                        .padding (20)
+                    Rectangle().frame(width: 250, height: 450)
+//                      Image(systemName: "rectangle.roundedbottom.fill")
+//                        .resizable()
+//                        .aspectRatio (contentMode: .fit)
+//                        .padding (20)
                 }.onAppear {
                     // Lopping Animation
                     withAnimation(
@@ -107,7 +99,7 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
             for j in stride(from: pearlRadius, to: 45, by: pearlRadius){
                 
                 let circle = SKShapeNode(circleOfRadius: pearlRadius)
-                circle.fillColor = .blue
+                circle.fillColor = .black
                 circle.strokeColor = .clear
                 let pearl = SKSpriteNode(texture: SKView().texture(from: circle))
                 pearl.position = CGPoint(x:i, y:j)
