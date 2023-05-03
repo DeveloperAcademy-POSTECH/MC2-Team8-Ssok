@@ -22,44 +22,45 @@ struct ContentView: View {
     
     @State var showingBall = false
     
+
     var scene = Scene1(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     
     var body: some View {
         ZStack{
-            SpriteView(scene: scene).ignoresSafeArea().frame(width: 250, height: 450).aspectRatio(contentMode: .fit)
+            GeometryReader{proxy in
+                let size = proxy.size
+
+                ZStack{
+                    // MARK: Water Drop
+                    Image (systemName: "rectangle.roundedbottom.fill")
+                        .resizable()
+                        .renderingMode(.template)
+                        .aspectRatio(contentMode:.fit)
+                        .foregroundColor(.white)
+                        .frame(width: size.width / 1.2)
+                        .scaleEffect(x: 1.1, y: 1)
+
+                    //wave effect
+                    WaterWave(progress: progress, waveHeight: 0.05, offset: startAnimation)
+                        .fill(Color("Blue"))
+                }
+                .mask {
+                    Image(systemName: "rectangle.roundedbottom.fill")
+                        .resizable()
+                        .aspectRatio (contentMode: .fit)
+                        .padding (20)
+                }.onAppear {
+                    // Lopping Animation
+                    withAnimation(
+                        .linear(duration: 2)
+                        .repeatForever(autoreverses: false)){
+                            // If you set value less than the rect width it will not finish completely
+                            startAnimation = size.width
+                        }
+                }
+            }
             
-//            GeometryReader{proxy in
-//                let size = proxy.size
-//
-//                ZStack{
-//                    // MARK: Water Drop
-//                    Image (systemName: "rectangle.roundedbottom.fill")
-//                        .resizable()
-//                        .renderingMode(.template)
-//                        .aspectRatio(contentMode:.fit)
-//                        .foregroundColor(.white)
-//                        .frame(width: size.width / 1.2)
-//                        .scaleEffect(x: 1.1, y: 1)
-//
-//                    //wave effect
-//                    WaterWave(progress: progress, waveHeight: 0.05, offset: startAnimation)
-//                        .fill(Color("Blue"))
-//                }
-//                .mask {
-//                    Image(systemName: "rectangle.roundedbottom.fill")
-//                        .resizable()
-//                        .aspectRatio (contentMode: .fit)
-//                        .padding (20)
-//                }.onAppear {
-//                    // Lopping Animation
-//                    withAnimation(
-//                        .linear(duration: 2)
-//                        .repeatForever(autoreverses: false)){
-//                            // If you set value less than the rect width it will not finish completely
-//                            startAnimation = size.width
-//                        }
-//                }
-//            }
+            SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: 250, height: 450).aspectRatio(contentMode: .fit)
         }
         
     }
@@ -87,7 +88,7 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         
         self.backgroundColor = .clear
-        
+        view.allowsTransparency = true
         
         
         
@@ -106,6 +107,8 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
             for j in stride(from: pearlRadius, to: 45, by: pearlRadius){
                 
                 let circle = SKShapeNode(circleOfRadius: pearlRadius)
+                circle.fillColor = .blue
+                circle.strokeColor = .clear
                 let pearl = SKSpriteNode(texture: SKView().texture(from: circle))
                 pearl.position = CGPoint(x:i, y:j)
                 pearl.name = "ball"
