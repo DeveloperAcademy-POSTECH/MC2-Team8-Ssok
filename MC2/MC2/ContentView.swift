@@ -9,6 +9,8 @@ import SwiftUI
 import SpriteKit
 import CoreMotion
 
+var motionstate = 0
+
 struct ContentView: View {
     
     var scene = Scene1(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -35,6 +37,7 @@ struct ColliderType {
 
 class Scene1: SKScene, SKPhysicsContactDelegate {
     
+    var motionstate = 0
     var motionmanager : CMMotionManager?
     var pearls = [".gray",".blue",".red"]
     
@@ -75,25 +78,30 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
   
         motionmanager = CMMotionManager()
         motionmanager?.startAccelerometerUpdates()
-        
-        
-
     }
-
     
     override func update(_ currentTime: TimeInterval) {
         if let accelerometerData = motionmanager?.accelerometerData {
-            physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 50 , dy: accelerometerData.acceleration.y * 50)
+            physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 30 , dy: accelerometerData.acceleration.y * 30)
+            
+            if accelerometerData.acceleration.x > 0.5 || accelerometerData.acceleration.x < -0.5 {
+                motionstate = 1
+            } else {
+                motionstate = 0
+            }
         }
+        
     }
-    
+
     func didBegin(_ contact: SKPhysicsContact){
         
         if contact.bodyA.node?.name == "ball" {
-            HapticManager.instance.impact(style: .heavy)
+            if motionstate == 1{
+                HapticManager.instance.impact(style: .light)
+            }
         }
         else if contact.bodyA.node?.name == "wall" {
-            HapticManager.instance.impact(style: .heavy)
+            HapticManager.instance.impact(style: .light)
         }
     }
 
