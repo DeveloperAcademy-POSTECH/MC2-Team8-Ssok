@@ -11,13 +11,55 @@ import CoreMotion
 
 var motionstate = 0
 
+
 struct ContentView: View {
+    
+    @State var progress: CGFloat = 0.5
+    @State var startAnimation: CGFloat = 0
+    @State var watertop: CGFloat = 0
+    @State var moneDropping: CGFloat = -270
+    @State var rotateMoney: CGFloat = 0
+    
+    @State var showingBall = false
     
     var scene = Scene1(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     
     var body: some View {
         ZStack{
             SpriteView(scene: scene).ignoresSafeArea().frame(width: 250, height: 450).aspectRatio(contentMode: .fit)
+            
+//            GeometryReader{proxy in
+//                let size = proxy.size
+//
+//                ZStack{
+//                    // MARK: Water Drop
+//                    Image (systemName: "rectangle.roundedbottom.fill")
+//                        .resizable()
+//                        .renderingMode(.template)
+//                        .aspectRatio(contentMode:.fit)
+//                        .foregroundColor(.white)
+//                        .frame(width: size.width / 1.2)
+//                        .scaleEffect(x: 1.1, y: 1)
+//
+//                    //wave effect
+//                    WaterWave(progress: progress, waveHeight: 0.05, offset: startAnimation)
+//                        .fill(Color("Blue"))
+//                }
+//                .mask {
+//                    Image(systemName: "rectangle.roundedbottom.fill")
+//                        .resizable()
+//                        .aspectRatio (contentMode: .fit)
+//                        .padding (20)
+//                }.onAppear {
+//                    // Lopping Animation
+//                    withAnimation(
+//                        .linear(duration: 2)
+//                        .repeatForever(autoreverses: false)){
+//                            // If you set value less than the rect width it will not finish completely
+//                            startAnimation = size.width
+//                        }
+//                }
+//            }
         }
         
     }
@@ -41,7 +83,13 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
     var motionmanager : CMMotionManager?
     var pearls = [".gray",".blue",".red"]
     
+    
     override func didMove(to view: SKView) {
+        
+        self.backgroundColor = .clear
+        
+        
+        
         
         physicsWorld.contactDelegate = self
         
@@ -108,13 +156,48 @@ class HapticManager {
     static let instance = HapticManager()
     private init() {}
 
-    func notification(type: UINotificationFeedbackGenerator.FeedbackType){
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(type)
-    }
+//    func notification(type: UINotificationFeedbackGenerator.FeedbackType){
+//        let generator = UINotificationFeedbackGenerator()
+//        generator.notificationOccurred(type)
+//    }
 
     func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
         let generator = UIImpactFeedbackGenerator(style: style)
         generator.impactOccurred()
+    }
+}
+
+
+
+struct WaterWave: Shape{
+    var progress: CGFloat
+    var waveHeight: CGFloat
+    
+    var offset: CGFloat
+    // Enabling Animation
+    var animatableData: CGFloat {
+        get{offset}
+        set{offset = newValue}
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        return Path{path in
+            
+            path.move(to: .zero)
+            
+            // MARK: Drawing Waves using
+            let progressHeight: CGFloat = (1 - progress) * rect.height
+            let height = waveHeight * rect.height
+            for value in stride(from: 0, to: rect.width, by: 2){
+                let x: CGFloat = value
+                let sine: CGFloat = sin(Angle(degrees: value + offset).radians)
+                let y: CGFloat = progressHeight + (height * sine)
+                path.addLine (to: CGPoint (x: x, y: y))
+            }
+            
+            // Bottom Portion
+            path.addLine (to: CGPoint (x: rect.width, y: rect.height))
+            path.addLine (to: CGPoint (x: 0, y: rect.height))
+        }
     }
 }
