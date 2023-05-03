@@ -32,9 +32,11 @@ struct ColliderType {
     static let wall: UInt32 = 0x1 << 1
 }
 
+
 class Scene1: SKScene, SKPhysicsContactDelegate {
     
     var motionmanager : CMMotionManager?
+    var pearls = [".gray",".blue",".red"]
     
     override func didMove(to view: SKView) {
         
@@ -46,6 +48,30 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
         self.physicsBody?.collisionBitMask = ColliderType.ball
         self.physicsBody?.contactTestBitMask = ColliderType.ball
         self.physicsBody?.isDynamic = false
+        
+        let pearlRadius = 15.0
+        
+        for i in stride(from: pearlRadius, to: 300, by: pearlRadius) {
+            for j in stride(from: pearlRadius, to: 45, by: pearlRadius){
+                
+                let circle = SKShapeNode(circleOfRadius: pearlRadius)
+                let pearl = SKSpriteNode(texture: SKView().texture(from: circle))
+                pearl.position = CGPoint(x:i, y:j)
+                pearl.name = "ball"
+                pearl.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+                pearl.physicsBody = SKPhysicsBody(circleOfRadius: pearl.size.width/2)
+                pearl.physicsBody?.allowsRotation = true
+                pearl.physicsBody?.restitution = 0.3
+                pearl.physicsBody?.categoryBitMask = ColliderType.ball
+                pearl.physicsBody?.collisionBitMask = ColliderType.wall | ColliderType.ball
+                pearl.physicsBody?.contactTestBitMask = ColliderType.wall | ColliderType.ball
+                
+
+                addChild(pearl)
+                
+            }
+        }
+        
   
         motionmanager = CMMotionManager()
         motionmanager?.startAccelerometerUpdates()
@@ -53,28 +79,6 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
         
 
     }
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        guard let touch = touches.first else { return }
-//
-//        let location = touch.location(in: self)
-//        let circle = SKShapeNode(circleOfRadius: 30.0)
-//
-//
-//        circle.fillColor = .gray
-//        circle.strokeColor = .clear
-//        let pearl = SKSpriteNode(texture: SKView().texture(from: circle))
-//        pearl.name = "ball"
-//        pearl.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//        pearl.position = location
-//        pearl.physicsBody = SKPhysicsBody(circleOfRadius: pearl.size.width/2)
-//        pearl.physicsBody?.allowsRotation = true
-//        pearl.physicsBody?.restitution = 0.3
-//        pearl.physicsBody?.categoryBitMask = ColliderType.ball
-//        pearl.physicsBody?.collisionBitMask = ColliderType.wall | ColliderType.ball
-//        pearl.physicsBody?.contactTestBitMask = ColliderType.wall | ColliderType.ball
-//
-//        addChild(pearl)
-//        }
 
     
     override func update(_ currentTime: TimeInterval) {
@@ -84,6 +88,7 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact){
+        
         if contact.bodyA.node?.name == "ball" {
             HapticManager.instance.impact(style: .heavy)
         }
