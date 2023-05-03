@@ -100,9 +100,6 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
                 HapticManager.instance.impact(style: .light)
             }
         }
-        else if contact.bodyA.node?.name == "wall" {
-            HapticManager.instance.impact(style: .light)
-        }
     }
 
 }
