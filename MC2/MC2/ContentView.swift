@@ -9,8 +9,6 @@ import SwiftUI
 import SpriteKit
 import CoreMotion
 
-var motionstate = 0
-
 
 struct ContentView: View {
     
@@ -22,29 +20,30 @@ struct ContentView: View {
     
     @State var showingBall = false
     
-
+    @State var isAnimation: Bool = false
+    
     var scene = Scene1(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+    
+    @State var wid = UIScreen.main.bounds.width/1.5
+    @State var hei = UIScreen.main.bounds.height/1.5
+    
     
     var body: some View {
         ZStack{
             GeometryReader{proxy in
                 let size = proxy.size
-
                 ZStack{
+                    Rectangle()
                     //wave effect
                     WaterWave(progress: progress, waveHeight: 0.03, offset: startAnimation)
                         .fill(Color("Blue"))
                 }
                 .mask {
-                    Rectangle().frame(width: 250, height: 450)
-//                      Image(systemName: "rectangle.roundedbottom.fill")
-//                        .resizable()
-//                        .aspectRatio (contentMode: .fit)
-//                        .padding (20)
+                    Rectangle().frame(width: wid, height: hei)
                 }.onAppear {
                     // Lopping Animation
                     withAnimation(
-                        .linear(duration: 2)
+                        .linear(duration: 3)
                         .repeatForever(autoreverses: false)){
                             // If you set value less than the rect width it will not finish completely
                             startAnimation = size.width
@@ -52,17 +51,30 @@ struct ContentView: View {
                 }
             }
             
-            SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: 250, height: 450).aspectRatio(contentMode: .fit)
+            SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit)
+            
+            Rectangle()
+                .fill(Color.red)
+                .opacity(0.5)
+                .frame(width: 32, height: 400)
+                .offset(y: isAnimation ? 0 : -hei)
+                .animation(.easeInOut(duration: 1.5), value: isAnimation)
+        }.edgesIgnoringSafeArea(.all)
+        .onTapGesture {
+            isAnimation.toggle()
         }
         
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
+
 
 struct ColliderType {
     static let ball: UInt32 = 0x1 << 0
@@ -71,33 +83,34 @@ struct ColliderType {
 
 
 class Scene1: SKScene, SKPhysicsContactDelegate {
-    
+
+    @Published var wH : CGFloat = 0.0
+
     var motionstate = 0
     var motionmanager : CMMotionManager?
     var pearls = [".gray",".blue",".red"]
-    
-    
+
     override func didMove(to view: SKView) {
-        
+
         self.backgroundColor = .clear
         view.allowsTransparency = true
-        
-        
-        
+
+
+
         physicsWorld.contactDelegate = self
-        
+
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = ColliderType.wall
         self.physicsBody?.collisionBitMask = ColliderType.ball
         self.physicsBody?.contactTestBitMask = ColliderType.ball
         self.physicsBody?.isDynamic = false
-        
-        let pearlRadius = 15.0
-        
+
+        let pearlRadius = 24.0
+
         for i in stride(from: pearlRadius, to: 300, by: pearlRadius) {
-            for j in stride(from: pearlRadius, to: 45, by: pearlRadius){
-                
+            for j in stride(from: pearlRadius, to: 48, by: pearlRadius){
+
                 let circle = SKShapeNode(circleOfRadius: pearlRadius)
                 circle.fillColor = .black
                 circle.strokeColor = .clear
@@ -111,51 +124,48 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
                 pearl.physicsBody?.categoryBitMask = ColliderType.ball
                 pearl.physicsBody?.collisionBitMask = ColliderType.wall | ColliderType.ball
                 pearl.physicsBody?.contactTestBitMask = ColliderType.wall | ColliderType.ball
-                
+
 
                 addChild(pearl)
-                
+
             }
         }
-        
-  
+
+
         motionmanager = CMMotionManager()
         motionmanager?.startAccelerometerUpdates()
     }
-    
+
     override func update(_ currentTime: TimeInterval) {
         if let accelerometerData = motionmanager?.accelerometerData {
             physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 30 , dy: accelerometerData.acceleration.y * 30)
-            
+
             if accelerometerData.acceleration.x > 0.5 || accelerometerData.acceleration.x < -0.5 {
                 motionstate = 1
+
             } else {
                 motionstate = 0
+                
             }
         }
-        
+
     }
 
     func didBegin(_ contact: SKPhysicsContact){
-        
+
         if contact.bodyA.node?.name == "ball" {
             if motionstate == 1{
                 HapticManager.instance.impact(style: .light)
             }
         }
     }
-
 }
+
 
 class HapticManager {
     static let instance = HapticManager()
     private init() {}
-
-//    func notification(type: UINotificationFeedbackGenerator.FeedbackType){
-//        let generator = UINotificationFeedbackGenerator()
-//        generator.notificationOccurred(type)
-//    }
-
+    
     func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
         let generator = UIImpactFeedbackGenerator(style: style)
         generator.impactOccurred()
