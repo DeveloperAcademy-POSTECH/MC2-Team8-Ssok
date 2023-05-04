@@ -24,32 +24,33 @@ struct ContentView: View {
     
     var scene = Scene1(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     
-    @State var wid = UIScreen.main.bounds.width/1.5
-    @State var hei = UIScreen.main.bounds.height/1.5
+    @State var wid = UIScreen.main.bounds.width
+    @State var hei = UIScreen.main.bounds.height
     
     
     var body: some View {
         ZStack{
-            GeometryReader{proxy in
-                let size = proxy.size
-                ZStack{
-                    Rectangle()
-                    //wave effect
-                    WaterWave(progress: progress, waveHeight: 0.03, offset: startAnimation)
-                        .fill(Color("Blue"))
-                }
-                .mask {
-                    Rectangle().frame(width: wid, height: hei)
-                }.onAppear {
-                    // Lopping Animation
-                    withAnimation(
-                        .linear(duration: 3)
-                        .repeatForever(autoreverses: false)){
-                            // If you set value less than the rect width it will not finish completely
-                            startAnimation = size.width
-                        }
-                }
-            }
+            Image("Background")
+//            GeometryReader{proxy in
+//                let size = proxy.size
+//                ZStack{
+//                    Rectangle()
+//                    //wave effect
+//                    WaterWave(progress: progress, waveHeight: 0.03, offset: startAnimation)
+//                        .fill(Color("Blue"))
+//                }
+//                .mask {
+//                    Rectangle().frame(width: wid, height: hei)
+//                }.onAppear {
+//                    // Lopping Animation
+//                    withAnimation(
+//                        .linear(duration: 3)
+//                        .repeatForever(autoreverses: false)){
+//                            // If you set value less than the rect width it will not finish completely
+//                            startAnimation = size.width
+//                        }
+//                }
+//            }
             
             SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit)
             
@@ -61,7 +62,9 @@ struct ContentView: View {
                 .animation(.easeInOut(duration: 1.5), value: isAnimation)
         }.edgesIgnoringSafeArea(.all)
         .onTapGesture {
-            isAnimation.toggle()
+            if isAnimation == false {
+                isAnimation.toggle()
+            }
         }
         
     }
@@ -81,35 +84,82 @@ struct ColliderType {
     static let wall: UInt32 = 0x1 << 1
 }
 
-
 class Scene1: SKScene, SKPhysicsContactDelegate {
-
-    @Published var wH : CGFloat = 0.0
 
     var motionstate = 0
     var motionmanager : CMMotionManager?
     var pearls = [".gray",".blue",".red"]
-
+    
+    let leftborder = SKShapeNode()
+    let leftbottom = SKShapeNode()
+    let rightborder = SKShapeNode()
+    let rightbottom = SKShapeNode()
     override func didMove(to view: SKView) {
 
         self.backgroundColor = .clear
         view.allowsTransparency = true
-
-
-
+        
         physicsWorld.contactDelegate = self
+        
+        let Cup = SKSpriteNode(imageNamed: "cupanddrinks")
+        
+        Cup.position = CGPoint(x: frame.midX, y: 303)
 
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.categoryBitMask = ColliderType.wall
-        self.physicsBody?.collisionBitMask = ColliderType.ball
-        self.physicsBody?.contactTestBitMask = ColliderType.ball
-        self.physicsBody?.isDynamic = false
+        addChild(Cup)
+        
+        let Vector = SKSpriteNode(imageNamed: "Vector 7")
+        Vector.alpha = 0
+        Vector.physicsBody = SKPhysicsBody(edgeLoopFrom: Vector.frame)
+        
+        Vector.position = CGPoint(x: frame.midX, y: 283)
+        
+        Vector.physicsBody?.affectedByGravity = false
+        Vector.physicsBody?.categoryBitMask = ColliderType.wall
+        Vector.physicsBody?.collisionBitMask = ColliderType.ball
+        Vector.physicsBody?.contactTestBitMask = ColliderType.ball
+        Vector.physicsBody?.isDynamic = false
+        
+        addChild(Vector)
+        
+        leftborder.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
+        leftborder.physicsBody?.affectedByGravity = false
+        leftborder.zRotation = .pi/50
+        leftborder.position = CGPoint(x: frame.midX/2.9, y: frame.midY)
+        leftborder.physicsBody?.isDynamic = false
+        
+        addChild(leftborder)
+        
+        leftbottom.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
+        leftbottom.physicsBody?.affectedByGravity = false
+        leftbottom.zRotation = .pi/3.1
+        leftbottom.position = CGPoint(x: frame.midX, y: frame.height/15)
+        leftbottom.physicsBody?.isDynamic = false
+        
+        addChild(leftbottom)
+        
+        rightborder.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
+        rightborder.physicsBody?.affectedByGravity = false
+        rightborder.zRotation = -.pi/40
+        rightborder.position = CGPoint(x:( frame.maxX-frame.midX/3), y: frame.midY)
+        rightborder.physicsBody?.isDynamic = false
+        
+        addChild(rightborder)
+        
+        rightbottom.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
+        rightbottom.physicsBody?.affectedByGravity = false
+        rightbottom.zRotation = -.pi/3.1
+        rightbottom.position = CGPoint(x:( frame.maxX-frame.midX), y: frame.height/15)
+        rightbottom.physicsBody?.isDynamic = false
+        
+        addChild(rightbottom)
+        
+        
+        
 
-        let pearlRadius = 24.0
+        let pearlRadius = 12.0
 
-        for i in stride(from: pearlRadius, to: 300, by: pearlRadius) {
-            for j in stride(from: pearlRadius, to: 48, by: pearlRadius){
+        for i in stride(from: 200, to: 300, by: pearlRadius) {
+            for j in stride(from: 150, to: 200, by: pearlRadius){
 
                 let circle = SKShapeNode(circleOfRadius: pearlRadius)
                 circle.fillColor = .black
@@ -131,6 +181,16 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
             }
         }
 
+        let Cuphead = SKSpriteNode(imageNamed: "Cuphead")
+        Cuphead.position = CGPoint(x: frame.midX, y:frame.maxY-303)
+        Cuphead.anchorPoint = CGPoint(x: 0.5, y: 1)
+        addChild(Cuphead)
+        
+        let Drink = SKSpriteNode(imageNamed: "onlydrinks")
+        Drink.alpha = 0.7
+        Drink.position = CGPoint(x: frame.midX, y:frame.maxY-308)
+        Drink.anchorPoint = CGPoint(x: 0.5, y: 1)
+        addChild(Drink)
 
         motionmanager = CMMotionManager()
         motionmanager?.startAccelerometerUpdates()
