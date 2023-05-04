@@ -12,15 +12,13 @@ import CoreMotion
 
 struct ContentView: View {
     
-    @State var progress: CGFloat = 0.7
-    @State var startAnimation: CGFloat = 0
-    @State var watertop: CGFloat = 0
-    @State var moneDropping: CGFloat = -270
-    @State var rotateMoney: CGFloat = 0
-    
-    @State var showingBall = false
-    
-    @State var isAnimation: Bool = false
+//    @State var progress: CGFloat = 0.7
+//    @State var startAnimation: CGFloat = 0
+//    @State var watertop: CGFloat = 0
+//    @State var moneDropping: CGFloat = -270
+//    @State var rotateMoney: CGFloat = 0
+//    @State var showingBall = false
+//    @State var isAnimation: Bool = false
     
     var scene = Scene1(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     
@@ -54,18 +52,19 @@ struct ContentView: View {
             
             SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit)
             
-            Rectangle()
-                .fill(Color.red)
-                .opacity(0.5)
-                .frame(width: 32, height: 400)
-                .offset(y: isAnimation ? 0 : -hei)
-                .animation(.easeInOut(duration: 1.5), value: isAnimation)
-        }.edgesIgnoringSafeArea(.all)
-        .onTapGesture {
-            if isAnimation == false {
-                isAnimation.toggle()
-            }
+//            Rectangle()
+//                .fill(Color.red)
+//                .opacity(0.5)
+//                .frame(width: 32, height: 400)
+//                .offset(y: isAnimation ? 0 : -hei)
+//                .animation(.easeInOut(duration: 1.5), value: isAnimation)
         }
+        .edgesIgnoringSafeArea(.all)
+//        .onTapGesture {
+//            if isAnimation == false {
+//                isAnimation.toggle()
+//            }
+//        }
         
     }
 }
@@ -84,11 +83,13 @@ struct ColliderType {
     static let wall: UInt32 = 0x1 << 1
 }
 
+class Pearl : SKSpriteNode {}
+
 class Scene1: SKScene, SKPhysicsContactDelegate {
 
     var motionstate = 0
     var motionmanager : CMMotionManager?
-    var pearls = [".gray",".blue",".red"]
+    var pearls = ["Pearl1","Pearl2"]
     
     let leftborder = SKShapeNode()
     let leftbottom = SKShapeNode()
@@ -153,22 +154,17 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
         
         addChild(rightbottom)
         
-        
-        
-
-        let pearlRadius = 12.0
+        let pearlRadius = 20.0
 
         for i in stride(from: 200, to: 300, by: pearlRadius) {
             for j in stride(from: 150, to: 200, by: pearlRadius){
 
-                let circle = SKShapeNode(circleOfRadius: pearlRadius)
-                circle.fillColor = .black
-                circle.strokeColor = .clear
-                let pearl = SKSpriteNode(texture: SKView().texture(from: circle))
-                pearl.position = CGPoint(x:i, y:j)
+                let pearlType = pearls.randomElement()!
+                let pearl = Pearl(imageNamed: pearlType)
+                pearl.position = CGPoint(x: i, y: j)
                 pearl.name = "ball"
                 pearl.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-                pearl.physicsBody = SKPhysicsBody(circleOfRadius: pearl.size.width/2)
+                pearl.physicsBody = SKPhysicsBody(circleOfRadius: pearlRadius)
                 pearl.physicsBody?.allowsRotation = true
                 pearl.physicsBody?.restitution = 0.3
                 pearl.physicsBody?.categoryBitMask = ColliderType.ball
@@ -187,7 +183,7 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
         addChild(Cuphead)
         
         let Drink = SKSpriteNode(imageNamed: "onlydrinks")
-        Drink.alpha = 0.7
+        Drink.alpha = 0.5
         Drink.position = CGPoint(x: frame.midX, y:frame.maxY-308)
         Drink.anchorPoint = CGPoint(x: 0.5, y: 1)
         addChild(Drink)
@@ -234,35 +230,35 @@ class HapticManager {
 
 
 
-struct WaterWave: Shape{
-    var progress: CGFloat
-    var waveHeight: CGFloat
-    
-    var offset: CGFloat
-    // Enabling Animation
-    var animatableData: CGFloat {
-        get{offset}
-        set{offset = newValue}
-    }
-    
-    func path(in rect: CGRect) -> Path {
-        return Path{path in
-            
-            path.move(to: .zero)
-            
-            // MARK: Drawing Waves using
-            let progressHeight: CGFloat = (1 - progress) * rect.height
-            let height = waveHeight * rect.height
-            for value in stride(from: 0, to: rect.width, by: 2){
-                let x: CGFloat = value
-                let sine: CGFloat = sin(Angle(degrees: value + offset).radians)
-                let y: CGFloat = progressHeight + (height * sine)
-                path.addLine (to: CGPoint (x: x, y: y))
-            }
-            
-            // Bottom Portion
-            path.addLine (to: CGPoint (x: rect.width, y: rect.height))
-            path.addLine (to: CGPoint (x: 0, y: rect.height))
-        }
-    }
-}
+//struct WaterWave: Shape{
+//    var progress: CGFloat
+//    var waveHeight: CGFloat
+//
+//    var offset: CGFloat
+//    // Enabling Animation
+//    var animatableData: CGFloat {
+//        get{offset}
+//        set{offset = newValue}
+//    }
+//
+//    func path(in rect: CGRect) -> Path {
+//        return Path{path in
+//
+//            path.move(to: .zero)
+//
+//            // MARK: Drawing Waves using
+//            let progressHeight: CGFloat = (1 - progress) * rect.height
+//            let height = waveHeight * rect.height
+//            for value in stride(from: 0, to: rect.width, by: 2){
+//                let x: CGFloat = value
+//                let sine: CGFloat = sin(Angle(degrees: value + offset).radians)
+//                let y: CGFloat = progressHeight + (height * sine)
+//                path.addLine (to: CGPoint (x: x, y: y))
+//            }
+//
+//            // Bottom Portion
+//            path.addLine (to: CGPoint (x: rect.width, y: rect.height))
+//            path.addLine (to: CGPoint (x: 0, y: rect.height))
+//        }
+//    }
+//}
