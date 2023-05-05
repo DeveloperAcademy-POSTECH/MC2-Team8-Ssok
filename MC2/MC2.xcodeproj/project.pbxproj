@@ -15,6 +15,7 @@
 		1015417F2A02395D00661FA0 /* MC2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1015417E2A02395D00661FA0 /* MC2UITests.swift */; };
 		101541812A02395D00661FA0 /* MC2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101541802A02395D00661FA0 /* MC2UITestsLaunchTests.swift */; };
 		10C4BCD82A03F6E9005C8FAD /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C4BCD72A03F6E9005C8FAD /* BottleView.swift */; };
+		10C4BCDA2A04CC23005C8FAD /* EndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C4BCD92A04CC23005C8FAD /* EndingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		1015417E2A02395D00661FA0 /* MC2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2UITests.swift; sourceTree = "<group>"; };
 		101541802A02395D00661FA0 /* MC2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		10C4BCD72A03F6E9005C8FAD /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
+		10C4BCD92A04CC23005C8FAD /* EndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		101541622A02395C00661FA0 /* MC2 */ = {
 			isa = PBXGroup;
 			children = (
+				10C4BCD92A04CC23005C8FAD /* EndingView.swift */,
 				10C4BCD72A03F6E9005C8FAD /* BottleView.swift */,
 				101541632A02395C00661FA0 /* MC2App.swift */,
 				101541652A02395C00661FA0 /* ContentView.swift */,
@@ -263,6 +266,7 @@
 				101541662A02395C00661FA0 /* ContentView.swift in Sources */,
 				101541642A02395C00661FA0 /* MC2App.swift in Sources */,
 				10C4BCD82A03F6E9005C8FAD /* BottleView.swift in Sources */,
+				10C4BCDA2A04CC23005C8FAD /* EndingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

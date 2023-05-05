@@ -76,13 +76,6 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
-
-struct ColliderType {
-    static let ball: UInt32 = 0x1 << 0
-    static let wall: UInt32 = 0x1 << 1
-}
-
 class Pearl : SKSpriteNode {}
 
 class Scene1: SKScene, SKPhysicsContactDelegate {
@@ -115,9 +108,9 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
         Vector.position = CGPoint(x: frame.midX, y: 283)
         
         Vector.physicsBody?.affectedByGravity = false
-        Vector.physicsBody?.categoryBitMask = ColliderType.wall
-        Vector.physicsBody?.collisionBitMask = ColliderType.ball
-        Vector.physicsBody?.contactTestBitMask = ColliderType.ball
+        Vector.physicsBody?.categoryBitMask = ColType.wall
+        Vector.physicsBody?.collisionBitMask = ColType.ball
+        Vector.physicsBody?.contactTestBitMask = ColType.ball
         Vector.physicsBody?.isDynamic = false
         
         addChild(Vector)
@@ -167,9 +160,9 @@ class Scene1: SKScene, SKPhysicsContactDelegate {
                 pearl.physicsBody = SKPhysicsBody(circleOfRadius: pearlRadius)
                 pearl.physicsBody?.allowsRotation = true
                 pearl.physicsBody?.restitution = 0.3
-                pearl.physicsBody?.categoryBitMask = ColliderType.ball
-                pearl.physicsBody?.collisionBitMask = ColliderType.wall | ColliderType.ball
-                pearl.physicsBody?.contactTestBitMask = ColliderType.wall | ColliderType.ball
+                pearl.physicsBody?.categoryBitMask = ColType.ball
+                pearl.physicsBody?.collisionBitMask = ColType.wall | ColType.ball
+                pearl.physicsBody?.contactTestBitMask = ColType.wall | ColType.ball
 
 
                 addChild(pearl)

@@ -25,8 +25,7 @@ struct BottleView: View {
             
             SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit)
             
-        }
-        .edgesIgnoringSafeArea(.all)
+        }.ignoresSafeArea(.all)
         
     }
 }
@@ -85,9 +84,9 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         Vector.position = CGPoint(x: frame.midX, y: 283)
         
         Vector.physicsBody?.affectedByGravity = false
-        Vector.physicsBody?.categoryBitMask = ColliderType.wall
-        Vector.physicsBody?.collisionBitMask = ColliderType.ball
-        Vector.physicsBody?.contactTestBitMask = ColliderType.ball
+        Vector.physicsBody?.categoryBitMask = ColType.wall
+        Vector.physicsBody?.collisionBitMask = ColType.ball
+        Vector.physicsBody?.contactTestBitMask = ColType.ball
         Vector.physicsBody?.isDynamic = false
         
         addChild(Vector)
@@ -140,9 +139,9 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
                 pearl.physicsBody = SKPhysicsBody(circleOfRadius: pearlRadius)
                 pearl.physicsBody?.allowsRotation = true
                 pearl.physicsBody?.restitution = 0.3
-                pearl.physicsBody?.categoryBitMask = ColliderType.ball
-                pearl.physicsBody?.collisionBitMask = ColliderType.wall | ColliderType.ball
-                pearl.physicsBody?.contactTestBitMask = ColliderType.wall | ColliderType.ball
+                pearl.physicsBody?.categoryBitMask = ColType.ball
+                pearl.physicsBody?.collisionBitMask = ColType.wall | ColType.ball
+                pearl.physicsBody?.contactTestBitMask = ColType.wall | ColType.ball
 
 
                 addChild(pearl)
