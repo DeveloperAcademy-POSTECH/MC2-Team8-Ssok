@@ -31,7 +31,7 @@ struct StrawView: View {
                         .resizable()
                         .foregroundColor(.white)
                         .frame(width: 24, height: 24)
-                }
+                }.offset(y:40)
                 .opacity(isAnimation ? 0 : 1)
                 // 컵 & 버블
                 ZStack {
@@ -67,7 +67,7 @@ struct StrawView: View {
             Image("cutdrinks").position(x: wid/2, y: 534.6).opacity(0.4)
             
             //Dim
-            Color(.black)
+            Color(.white)
                 .edgesIgnoringSafeArea(.all)
                 .opacity(isAnimation ? 0.5 : 0)
                 .animation(.easeInOut(duration: 1).delay(2.5), value: isAnimation)

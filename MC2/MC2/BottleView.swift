@@ -21,7 +21,7 @@ struct BottleView: View {
     
     var body: some View {
         ZStack{
-            Image("Background")
+            Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
             
             SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit)
             
