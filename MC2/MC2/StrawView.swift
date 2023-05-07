@@ -73,7 +73,8 @@ struct StrawView: View {
                 .animation(.easeInOut(duration: 1).delay(2.5), value: isAnimation)
             //  첫 번째 볼
             if getFirstBall {
-                Text("\(member[Int.random(in: 0..<member.count)])")
+//                Text("\(member[Int.random(in: 0..<member.count)])")
+                Text("HI")
                     .font(.system(size: 80, weight: .bold))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
@@ -94,7 +95,8 @@ struct StrawView: View {
             }
             // 두 번째 볼
             if getSecondBall {
-                Text("\(member[Int.random(in: 0..<member.count)])")
+//                Text("\(member[Int.random(in: 0..<member.count)])")
+                Text("HI")
                     .font(.system(size: 80, weight: .bold))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
@@ -115,7 +117,8 @@ struct StrawView: View {
             }
             // 세 번째 볼
             if getThirdBall {
-                Text("\(member[Int.random(in: 0..<member.count)])")
+//                Text("\(member[Int.random(in: 0..<member.count)])")
+                Text("HI")
                     .font(.system(size: 80, weight: .bold))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)

@@ -11,6 +11,7 @@ import SpriteKit
 
 struct EndingView: View {
     
+    @State var st2: Bool = false
     @State var progress: CGFloat = 0.85
     @State var startAnimation: CGFloat = 0
     @State var watertop: CGFloat = 0
@@ -19,35 +20,82 @@ struct EndingView: View {
     @State var showingBall = false
     @State var isAnimation: Bool = false
     
+//    @State var ball1who: String
+    @State var ball2who: String = ""
+    @State var ball3who: String = ""
+    
     var ending = Ending_Pearl(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     
     @State var wid = UIScreen.main.bounds.width
     @State var hei = UIScreen.main.bounds.height
     
+    
     var body: some View {
-        ZStack{
-            GeometryReader{proxy in
-                let size = proxy.size
-                ZStack{
-                    Rectangle().fill(.white)
-                    //wave effect
-                    WaterWave(progress: progress, waveHeight: 0.03, offset: startAnimation)
-                        .fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .bottom))
-                }.onAppear {
-                    // Lopping Animation
-                    withAnimation(
-                        .linear(duration: 3)
-                        .repeatForever(autoreverses: false)){
-                            // If you set value less than the rect width it will not finish completely
-                            startAnimation = size.width
-                        }
+        if !st2{
+            ZStack{
+                GeometryReader{proxy in
+                    let size = proxy.size
+                    ZStack{
+                        Rectangle().fill(.white)
+                        //wave effect
+                        WaterWave(progress: progress, waveHeight: 0.03, offset: startAnimation)
+                            .fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .bottom))
+                    }.onAppear {
+                        // Lopping Animation
+                        withAnimation(
+                            .linear(duration: 3)
+                            .repeatForever(autoreverses: false)){
+                                // If you set value less than the rect width it will not finish completely
+                                startAnimation = size.width
+                            }
+                    }
                 }
-            }
-            //Long straw image
-            Image("Long_straw")
-            //Big Pearls
-            SpriteView(scene: ending, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit)
-        }.ignoresSafeArea(.all)
+                //Long straw image
+                Image("Long_straw")
+                //Big Pearls
+                SpriteView(scene: ending, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit)
+                //            Text(ball1who)
+                //            Text(ball2who)
+                //            Text(ball3who)
+                
+                Text("LET'S DO IT").bold().font(.system(size: 25)).offset(x:100, y:-201)
+                
+                Text("소다가")
+                    .font(.system(size: 75, weight: .bold))
+                    .offset(x:-70, y:-60)
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.1)
+                    .frame(width: wid, height: wid / 1.8)
+                    .foregroundColor(.white)
+                
+                
+                Text(ball2who)
+                    .font(.system(size: 75, weight: .bold))
+                    .offset(x: 30, y: 80)
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.1)
+                    .frame(width: wid, height: wid / 1.8)
+                    .foregroundColor(.white)
+                
+                Text(ball3who)
+                    .font(.system(size: 75, weight: .bold))
+                    .offset(y: 220)
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.1)
+                    .frame(width: wid, height: wid / 1.8)
+                    .foregroundColor(.white)
+                
+                Button(action: {st2 = true}){
+                    Text("Once Again?")
+                }.foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                    .background(Color("Button"))
+                    .cornerRadius(12).offset(y:363)
+            }.ignoresSafeArea(.all)
+        } else {
+            StrawView2()
+        }
     }
 }
 

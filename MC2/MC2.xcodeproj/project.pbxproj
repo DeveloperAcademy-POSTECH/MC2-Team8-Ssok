@@ -15,6 +15,11 @@
 		1015417F2A02395D00661FA0 /* MC2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1015417E2A02395D00661FA0 /* MC2UITests.swift */; };
 		101541812A02395D00661FA0 /* MC2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101541802A02395D00661FA0 /* MC2UITestsLaunchTests.swift */; };
 		101878A52A062B22000F7847 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101878A42A062B22000F7847 /* IntroView.swift */; };
+		101878A72A06AE44000F7847 /* StrawView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101878A62A06AE44000F7847 /* StrawView2.swift */; };
+		101878A92A06AE62000F7847 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101878A82A06AE62000F7847 /* BallView.swift */; };
+		101878B32A06AEFC000F7847 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101878B22A06AEFC000F7847 /* Member.swift */; };
+		101878B52A06AEFD000F7847 /* What.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101878B42A06AEFD000F7847 /* What.swift */; };
+		101878B72A06AEFF000F7847 /* Where.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101878B62A06AEFF000F7847 /* Where.swift */; };
 		107123B02A04FCAE00096E62 /* MemberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107123AF2A04FCAE00096E62 /* MemberData.swift */; };
 		107123B42A052C0F00096E62 /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107123B32A052C0F00096E62 /* StrawView.swift */; };
 		10C4BCD82A03F6E9005C8FAD /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C4BCD72A03F6E9005C8FAD /* BottleView.swift */; };
@@ -50,6 +55,11 @@
 		1015417E2A02395D00661FA0 /* MC2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2UITests.swift; sourceTree = "<group>"; };
 		101541802A02395D00661FA0 /* MC2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MC2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		101878A42A062B22000F7847 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		101878A62A06AE44000F7847 /* StrawView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView2.swift; sourceTree = "<group>"; };
+		101878A82A06AE62000F7847 /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
+		101878B22A06AEFC000F7847 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Member.swift; path = Model/Member.swift; sourceTree = "<group>"; };
+		101878B42A06AEFD000F7847 /* What.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = What.swift; path = Model/What.swift; sourceTree = "<group>"; };
+		101878B62A06AEFF000F7847 /* Where.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Where.swift; path = Model/Where.swift; sourceTree = "<group>"; };
 		107123AF2A04FCAE00096E62 /* MemberData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberData.swift; sourceTree = "<group>"; };
 		107123B32A052C0F00096E62 /* StrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
 		10C4BCD72A03F6E9005C8FAD /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
@@ -104,6 +114,11 @@
 		101541622A02395C00661FA0 /* MC2 */ = {
 			isa = PBXGroup;
 			children = (
+				101878B22A06AEFC000F7847 /* Member.swift */,
+				101878B42A06AEFD000F7847 /* What.swift */,
+				101878B62A06AEFF000F7847 /* Where.swift */,
+				101878A82A06AE62000F7847 /* BallView.swift */,
+				101878A62A06AE44000F7847 /* StrawView2.swift */,
 				101878A42A062B22000F7847 /* IntroView.swift */,
 				107123B32A052C0F00096E62 /* StrawView.swift */,
 				10C4BCD92A04CC23005C8FAD /* EndingView.swift */,
@@ -272,13 +287,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				101878A92A06AE62000F7847 /* BallView.swift in Sources */,
+				101878B72A06AEFF000F7847 /* Where.swift in Sources */,
 				101878A52A062B22000F7847 /* IntroView.swift in Sources */,
+				101878A72A06AE44000F7847 /* StrawView2.swift in Sources */,
 				101541662A02395C00661FA0 /* ContentView.swift in Sources */,
+				101878B52A06AEFD000F7847 /* What.swift in Sources */,
 				107123B02A04FCAE00096E62 /* MemberData.swift in Sources */,
 				101541642A02395C00661FA0 /* MC2App.swift in Sources */,
 				10C4BCD82A03F6E9005C8FAD /* BottleView.swift in Sources */,
 				10C4BCDA2A04CC23005C8FAD /* EndingView.swift in Sources */,
 				107123B42A052C0F00096E62 /* StrawView.swift in Sources */,
+				101878B32A06AEFC000F7847 /* Member.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = 6AGS8HZN55;
+				DEVELOPMENT_TEAM = AZDJLQL538;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -466,7 +486,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2/Preview Content\"";
-				DEVELOPMENT_TEAM = 6AGS8HZN55;
+				DEVELOPMENT_TEAM = AZDJLQL538;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
