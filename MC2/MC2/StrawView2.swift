@@ -114,7 +114,7 @@ struct StrawView2: View {
                 }
             }
         }else {
-            EndingView(ball2who : Where, ball3who: What)
+            EndingView(wheresentence : Where, whatsentence : What)
         }
         
     }
@@ -126,15 +126,3 @@ struct StrawView2_Previews: PreviewProvider {
         StrawView2()
     }
 }
-//
-//func randomWho() {
-//    var a:Int = Int.random(in:0..<member.count)
-//    var stat:String = ""
-//    var mem:[String] = []
-//
-//    for i in 0...a {
-//        stat = "\(member[Int.random(in:0..<member.count)])"
-//        mem.append(stat)
-//    }
-//
-//}

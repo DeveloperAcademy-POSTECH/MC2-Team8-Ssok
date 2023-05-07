@@ -21,8 +21,8 @@ struct EndingView: View {
     @State var isAnimation: Bool = false
     
 //    @State var ball1who: String
-    @State var ball2who: String = ""
-    @State var ball3who: String = ""
+    @State var wheresentence: String = ""
+    @State var whatsentence: String = ""
     
     var ending = Ending_Pearl(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     
