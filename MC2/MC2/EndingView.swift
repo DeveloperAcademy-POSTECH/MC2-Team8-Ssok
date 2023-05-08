@@ -62,27 +62,27 @@ struct EndingView: View {
                 
                 Text("소다가")
                     .font(.system(size: 75, weight: .bold))
-                    .offset(x:-70, y:-60)
+                    .offset(y:-60)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
-                    .frame(width: wid, height: wid / 1.8)
+                    .frame(width: wid/2, height: wid / 3)
                     .foregroundColor(.white)
                 
                 
-                Text(ball2who)
+                Text(wheresentence)
                     .font(.system(size: 75, weight: .bold))
-                    .offset(x: 30, y: 80)
+                    .offset(y: 80)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
-                    .frame(width: wid, height: wid / 1.8)
+                    .frame(width: wid, height: wid / 3)
                     .foregroundColor(.white)
                 
-                Text(ball3who)
+                Text(whatsentence)
                     .font(.system(size: 75, weight: .bold))
                     .offset(y: 220)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
-                    .frame(width: wid, height: wid / 1.8)
+                    .frame(width: wid, height: wid / 3)
                     .foregroundColor(.white)
                 
                 Button(action: {st2 = true}){

@@ -39,13 +39,13 @@ struct StrawView: View {
                     VStack {
                         Spacer()
                         Image("Pearl1")
-                            .animation(.easeOut(duration: 1.5).delay(1.0), value: isAnimation)
+                            .animation(.easeInOut(duration: 1.5).delay(1.0), value: isAnimation)
                         
                         Image("Pearl2")
-                            .animation(.easeOut(duration: 1.5).delay(1.0), value: isAnimation)
+                            .animation(.easeInOut(duration: 1.5).delay(1.0), value: isAnimation)
                         
                         Image("Pearl1")
-                            .animation(.easeOut(duration: 1.5).delay(1.0), value: isAnimation)
+                            .animation(.easeInOut(duration: 1.5).delay(1.0), value: isAnimation)
                     }
                     .frame(width: 28)
                     .opacity(isAnimation ? 1 : 0)

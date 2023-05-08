@@ -46,13 +46,13 @@ struct StrawView2: View {
                             VStack {
                                 Spacer()
                                 Image("Pearl1")
-                                    .animation(.easeOut(duration: 1.5).delay(1.0),value: isAnimation)
+                                    .animation(.easeInOut(duration: 1.5).delay(1.1),value: isAnimation)
                                 
                                 Image("Pearl2")
-                                    .animation(.easeOut(duration: 1.5).delay(1.0),value: isAnimation)
+                                    .animation(.easeInOut(duration: 1.5).delay(1.2),value: isAnimation)
                                 
                                 Image("Pearl1")
-                                    .animation(.easeOut(duration: 1.5).delay(1.0),value: isAnimation)
+                                    .animation(.easeInOut(duration: 1.5).delay(1.3),value: isAnimation)
                             }
                             .frame(width: 28)
                             .opacity(isAnimation ? 1 : 0)
@@ -68,8 +68,8 @@ struct StrawView2: View {
                         
                     }
                     Image("cutcup").position(x: wid/2 ,y:349.05)
-                    
-                    Image("cutdrinks").position(x: wid/2, y: 534.6).opacity(0.4)
+//
+//                    Image("cutdrinks").position(x: wid/2, y: 534.6).opacity(0.4)
                     //Dim
                     Color(.white)
                         .edgesIgnoringSafeArea(.all)
