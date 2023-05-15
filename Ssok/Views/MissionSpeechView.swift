@@ -20,6 +20,7 @@ struct MissionSpeechView: View {
     @State var answerText: String
     @State var speechTime: Double
     @State var progressTime: Double = 0.0
+    @State var checktimer : Timer?
     
     let progressTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -55,34 +56,35 @@ struct MissionSpeechView: View {
                                 speechRecognizer.startTranscribing()}
                             let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false){
                                 timer in
+       
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                                 //영소문자 바꾸는 거 해야함.
                                 
                                 if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") != cleanedTranscript){
                                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                    speechRecognizer.startTranscribing()
                                     isWrong = true
                                     isSpeech = false
-                                    print(speechRecognizer.transcript)
+                   
+            
+                                    
                                 }
                             }
-                            let checktimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
+                            checktimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
                                 timer in
+                                print("켜짐")
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                                 //영소문자 바꾸는 거 해야함.
                                 
                                 if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") == cleanedTranscript) {
                                     timer.invalidate()
                                     isComplete = true
-                                    speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
+                                    speechRecognizer.stopTranscript()
                                     print("정답")
                                 }}
-                            RunLoop.main.add(checktimer, forMode: .common)
+                            RunLoop.main.add(checktimer!, forMode: .common)
                             RunLoop.main.add(timer, forMode: .common)
                         }
-                        .onDisappear{
-                            speechRecognizer.stopTranscript()
-                        }
+                   
                 } else {
                     Button {
                         isSpeech = true
@@ -188,6 +190,12 @@ struct MissionSpeechView: View {
             }
         }
         .navigationBarHidden(true)
+        .onDisappear{
+            speechRecognizer.stopTranscript()
+            checktimer?.invalidate()
+            checktimer = nil
+    
+        }
     }
 }
 
