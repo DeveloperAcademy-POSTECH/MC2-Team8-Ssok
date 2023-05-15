@@ -206,8 +206,8 @@ struct StrawView: View {
                     }
                     Spacer()
                 }
-                .padding(.leading, 12)
-                .padding(.top, 56)
+                .padding(.leading, 8)
+                .padding(.top, 48)
             }
             .navigationBarHidden(true)
             .onReceive(timer) { input in
@@ -262,20 +262,26 @@ struct StrawView: View {
 extension StrawView {
     var backButton: some View {
         Button {
-            if (What.missionType == .blink || What.missionType == .smile) {
-                NavigationLink(destination: AddMemberView()){
-                    
-                }
-            } else {
-                mode.wrappedValue.dismiss()
-            }
+//            if (What.missionType == .blink || What.missionType == .smile) {
+//                NavigationLink(destination: AddMemberView()){
+//
+//                }
+//            } else {
+//                mode.wrappedValue.dismiss()
+//            }
+            mode.wrappedValue.dismiss()
         } label: {
-            Image(systemName: "chevron.backward")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(.white)
-                .bold()
-                .frame(width: 20, height: 20)
+            ZStack {
+                Rectangle()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(.clear)
+                Image(systemName: "chevron.backward")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.white)
+                    .bold()
+            }
         }
     }
     
