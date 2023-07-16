@@ -87,7 +87,7 @@ Ssok
         └── MissionTopView.swift
         └── MissionTitleView.swift
         └── MissionCompleteView.swift
-        └── MissionTypeView.swift
+        └── MissionTypeView.swift
     └── IntroView.swift
     └── AddMemberView.swift
     └── BottleView.swift
