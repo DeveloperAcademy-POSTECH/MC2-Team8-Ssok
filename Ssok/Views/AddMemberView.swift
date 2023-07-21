@@ -36,7 +36,7 @@ struct AddMemberView: View {
                 .onSubmit {
                     viewModel.textFieldSubmit()
                 }
-                .alert("입력한 이름을 다시 확인해주세요.", isPresented: $viewModel.isSubmitFail) {
+                .alert("이름을 다시 확인해주세요", isPresented: $viewModel.isSubmitFail) {
                     Button("OK") {
                         viewModel.isSubmitFail = false
                     }

@@ -36,7 +36,6 @@ class AddMemberViewModel: ObservableObject {
         memberName = ""
     }
 
-
     func textFieldSubmit() {
         guard !memberName.isEmpty,
               !members.contains(where: { $0.name == memberName }),
