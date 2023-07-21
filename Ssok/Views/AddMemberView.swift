@@ -36,12 +36,12 @@ struct AddMemberView: View {
                 .onSubmit {
                     viewModel.textFieldSubmit()
                 }
-                .alert("입력하는 이름을 다시 한번 확인해주세요.", isPresented: $viewModel.isSubmitFail) {
+                .alert("입력한 이름을 다시 확인해주세요.", isPresented: $viewModel.isSubmitFail) {
                     Button("OK") {
                         viewModel.isSubmitFail = false
                     }
                 } message: {
-                    Text("입력하신 이름을확인해주세요.\n이름은 한글만 가능합니다.")
+                    Text("입력하신 이름을 확인해주세요.\n이름은 한글만 가능합니다.")
                 }
                 .alert("인원은 최대 6명까지 가능합니다.", isPresented: $viewModel.isTotalAlertShowing) {
                     Button("OK") {
@@ -81,18 +81,22 @@ struct AddMemberView: View {
                     path.append(ViewType.strawView)
                     random.members = viewModel.members
                 } label: {
-                    Text("다음")
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, UIScreen.getHeight(15))
-                        .background(Color("Bg_bottom2"))
-                        .cornerRadius(12)
+                    ZStack {
+                         Rectangle()
+                             .foregroundColor(Color("Bg_bottom2"))
+                             .cornerRadius(12)
+                             .opacity(viewModel.members.isEmpty ? 0.4 : 1.0)
+                         Text("다음")
+                             .foregroundColor(.white)
+                             .fontWeight(.bold)
+                             .frame(maxWidth: .infinity)
+                     }
                 }
+                .frame(height: UIScreen.getHeight(50))
                 .padding(.horizontal, UIScreen.getWidth(20))
                 .padding(.bottom, UIScreen.getHeight(10))
                 .offset(y: -keyboardHeight)
-                .disabled(viewModel.isNextButtonDisabled)
+                .disabled(viewModel.members.isEmpty)
             }
             .navigationTitle("같이 할 사람들")
             .navigationBarTitleDisplayMode(.large)
@@ -107,7 +111,6 @@ struct AddMemberView: View {
         }
         .onAppear {
             viewModel.setMemberData()
-            viewModel.setNextButtonState()
         }
         .onReceive(NotificationCenter.default.publisher(for:
                                                             UIResponder

@@ -6,7 +6,6 @@ class AddMemberViewModel: ObservableObject {
     @Published var isSubmitFail = false
     @Published var isTotalAlertShowing = false
     @Published var isExistAlertShowing = false
-    @Published var isNextButtonDisabled = false
     @Published var members = [Member]()
 
     func setMemberData() {
@@ -19,13 +18,13 @@ class AddMemberViewModel: ObservableObject {
     func appendMembers(_ memberName: String) {
         members.append(Member(name: memberName))
         UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
-        setNextButtonState()
+
     }
 
     func removeMembers(at offsets: IndexSet) {
         members.remove(atOffsets: offsets)
         UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
-        setNextButtonState()
+       
     }
 
     func plusButtonDidTap() {
@@ -37,12 +36,7 @@ class AddMemberViewModel: ObservableObject {
         memberName = ""
     }
 
-    func setNextButtonState() {
-        if members.isEmpty {
-            isNextButtonDisabled = true
-        } else { isNextButtonDisabled = false }
-    }
-    
+
     func textFieldSubmit() {
         guard !memberName.isEmpty,
               !members.contains(where: { $0.name == memberName }),
