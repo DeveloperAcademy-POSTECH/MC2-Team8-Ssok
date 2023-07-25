@@ -9,7 +9,7 @@ import SwiftUI
 import RealityKit
 
 struct MissionSmileView: View {
-    @State var arViewState = ""
+    @State var arMissionType: MissionType
     @Binding var state: Bool
     @Binding var largePearlIndex: Int
 
@@ -18,11 +18,12 @@ struct MissionSmileView: View {
 
     var body: some View {
             ZStack {
-                ARViewContainer(arViewModel: arViewModel, state: $state, largePearlIndex: $largePearlIndex)
+                ARViewContainer(arViewModel: arViewModel, state: $state, largePearlIndex: $largePearlIndex, arMissionType: $arMissionType)
                     .edgesIgnoringSafeArea(.all)
 
                 VStack {
-                    if arViewState == "smile" {
+                    switch arMissionType {
+                    case .smile:
                         if !arViewModel.asyncIsSmileCount {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
@@ -41,7 +42,7 @@ struct MissionSmileView: View {
                                                       state: $state,
                                                 largePearlIndex: $largePearlIndex)
                         }
-                    } else if arViewState == "blink"{
+                    case .blink:
                         if !arViewModel.asyncIsBlinkCount {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
@@ -60,6 +61,8 @@ struct MissionSmileView: View {
                                                       state: $state,
                                                 largePearlIndex: $largePearlIndex)
                         }
+                    default:
+                        EmptyView()
                     }
                 }
             }
@@ -70,6 +73,7 @@ struct ARViewContainer: UIViewRepresentable {
     var arViewModel: ARViewModel
     @Binding var state: Bool
     @Binding var largePearlIndex: Int
+    @Binding var arMissionType: MissionType
 
     func makeUIView(context: Context) -> ARView {
         arViewModel.startSessionDelegate()
@@ -81,7 +85,7 @@ struct ARViewContainer: UIViewRepresentable {
 
 struct MissionSmileView_Previews: PreviewProvider {
     static var previews: some View {
-        MissionSmileView(arViewState: "smile",
+        MissionSmileView(arMissionType: MissionType.smile,
                           state: .constant(false),
                           largePearlIndex: .constant(2))
     }

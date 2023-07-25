@@ -9,6 +9,11 @@ import Foundation
 import RealityKit
 import ARKit
 
+enum ArViewController{
+    case smile
+    case blink
+}
+
 struct ARModel {
     private(set) var arView: ARView
     var smileRight: Float = 0
