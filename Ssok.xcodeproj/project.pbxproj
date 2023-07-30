@@ -474,13 +474,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
 				DEVELOPMENT_TEAM = NG2NLR2Z86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Ssok이 얼굴 인식을 위해 기기의 카메라에 접근합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ssok이 얼굴 인식을 위해 기기의 카메라에 접근합니다. 수집한 정보는 특정 개인을 식별하는 데 사용될 수 없습니다. 얼굴 인식기능을 실행하기 위한 목적으로만 사용되며, 서버에 저장되거나 제3자와 공유되지 않습니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ssok이 데시벨 측정과 음성 인식을 위해 기기의 마이크에 접근합니다.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Ssok이 사용자의 음성을 받아쓰기 위해 음성 인식을 사용합니다.";
@@ -488,16 +488,17 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.letsbuildthatapps.-Ssokkcontrolst-atement-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CSSP.Ssok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -508,13 +509,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
 				DEVELOPMENT_TEAM = AZDJLQL538;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Ssok이 얼굴 인식을 위해 기기의 카메라에 접근합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ssok이 얼굴 인식을 위해 기기의 카메라에 접근합니다. 수집한 정보는 특정 개인을 식별하는 데 사용될 수 없습니다. 얼굴 인식기능을 실행하기 위한 목적으로만 사용되며, 서버에 저장되거나 제3자와 공유되지 않습니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ssok이 데시벨 측정과 음성 인식을 위해 기기의 마이크에 접근합니다.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Ssok이 사용자의 음성을 받아쓰기 위해 음성 인식을 사용합니다.";
@@ -522,6 +523,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -531,7 +533,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
