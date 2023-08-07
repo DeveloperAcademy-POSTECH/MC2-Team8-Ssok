@@ -10,7 +10,7 @@ import RealityKit
 import ARKit
 
 class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
-    @Published private var model = ARModel()
+    @Published var model = ARModel()
     @Published var ARFrame = false
 
     var blinkCount = 0

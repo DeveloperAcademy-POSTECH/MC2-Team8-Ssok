@@ -12,6 +12,8 @@
 		10BCD2E62A1124A600303334 /* MissionEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E52A1124A600303334 /* MissionEndingView.swift */; };
 		10E73D022A0A3BEB00AD2F91 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E73D012A0A3BEB00AD2F91 /* UIScreen+.swift */; };
 		10EC55642A5159AB00184980 /* MissionShakeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EC55632A5159AB00184980 /* MissionShakeViewModel.swift */; };
+		7C3670BC2A81654A00ACFA11 /* SsokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3670BB2A81654A00ACFA11 /* SsokTests.swift */; };
+		7C3670C92A81656000ACFA11 /* ARViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3670C82A81656000ACFA11 /* ARViewModelTests.swift */; };
 		7C587D5A2A47435000D7B9DD /* MissionTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C587D592A47435000D7B9DD /* MissionTypeView.swift */; };
 		7C94D54C2A02AB3A00AAC279 /* SsokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D54B2A02AB3A00AAC279 /* SsokApp.swift */; };
 		7C94D5502A02AB3B00AAC279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */; };
@@ -47,12 +49,33 @@
 		C7B95D5B2A4F318C00DB7307 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B95D5A2A4F318C00DB7307 /* String.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7C3670BD2A81654A00ACFA11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C94D5402A02AB3900AAC279 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7C94D5472A02AB3A00AAC279;
+			remoteInfo = Ssok;
+		};
+		7C3670CA2A81656000ACFA11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C94D5402A02AB3900AAC279 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7C94D5472A02AB3A00AAC279;
+			remoteInfo = Ssok;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		10882FA22A2B1B0100B76C24 /* BottleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleViewModel.swift; sourceTree = "<group>"; };
 		10BCD2E22A11149700303334 /* MissionCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCompleteView.swift; sourceTree = "<group>"; };
 		10BCD2E52A1124A600303334 /* MissionEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionEndingView.swift; sourceTree = "<group>"; };
 		10E73D012A0A3BEB00AD2F91 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		10EC55632A5159AB00184980 /* MissionShakeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionShakeViewModel.swift; sourceTree = "<group>"; };
+		7C3670B92A81654A00ACFA11 /* SsokTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SsokTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C3670BB2A81654A00ACFA11 /* SsokTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SsokTests.swift; sourceTree = "<group>"; };
+		7C3670C62A81656000ACFA11 /* ARViewModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARViewModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C3670C82A81656000ACFA11 /* ARViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModelTests.swift; sourceTree = "<group>"; };
 		7C587D592A47435000D7B9DD /* MissionTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTypeView.swift; sourceTree = "<group>"; };
 		7C94D5482A02AB3A00AAC279 /* Ssok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ssok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94D54B2A02AB3A00AAC279 /* SsokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SsokApp.swift; sourceTree = "<group>"; };
@@ -91,6 +114,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7C3670B62A81654A00ACFA11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7C3670C32A81656000ACFA11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C94D5452A02AB3A00AAC279 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -101,11 +138,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C3670BA2A81654A00ACFA11 /* SsokTests */ = {
+			isa = PBXGroup;
+			children = (
+				7C3670BB2A81654A00ACFA11 /* SsokTests.swift */,
+			);
+			path = SsokTests;
+			sourceTree = "<group>";
+		};
+		7C3670C72A81656000ACFA11 /* ARViewModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				7C3670C82A81656000ACFA11 /* ARViewModelTests.swift */,
+			);
+			path = ARViewModelTests;
+			sourceTree = "<group>";
+		};
 		7C94D53F2A02AB3900AAC279 = {
 			isa = PBXGroup;
 			children = (
 				C74C18862A2859D500D69345 /* .swiftlint.yml */,
 				7C94D54A2A02AB3A00AAC279 /* Ssok */,
+				7C3670BA2A81654A00ACFA11 /* SsokTests */,
+				7C3670C72A81656000ACFA11 /* ARViewModelTests */,
 				7C94D5492A02AB3A00AAC279 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				7C94D5482A02AB3A00AAC279 /* Ssok.app */,
+				7C3670B92A81654A00ACFA11 /* SsokTests.xctest */,
+				7C3670C62A81656000ACFA11 /* ARViewModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,6 +279,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7C3670B82A81654A00ACFA11 /* SsokTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C3670C12A81654A00ACFA11 /* Build configuration list for PBXNativeTarget "SsokTests" */;
+			buildPhases = (
+				7C3670B52A81654A00ACFA11 /* Sources */,
+				7C3670B62A81654A00ACFA11 /* Frameworks */,
+				7C3670B72A81654A00ACFA11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7C3670BE2A81654A00ACFA11 /* PBXTargetDependency */,
+			);
+			name = SsokTests;
+			productName = SsokTests;
+			productReference = 7C3670B92A81654A00ACFA11 /* SsokTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7C3670C52A81656000ACFA11 /* ARViewModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C3670CC2A81656000ACFA11 /* Build configuration list for PBXNativeTarget "ARViewModelTests" */;
+			buildPhases = (
+				7C3670C22A81656000ACFA11 /* Sources */,
+				7C3670C32A81656000ACFA11 /* Frameworks */,
+				7C3670C42A81656000ACFA11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7C3670CB2A81656000ACFA11 /* PBXTargetDependency */,
+			);
+			name = ARViewModelTests;
+			productName = ARViewModelTests;
+			productReference = 7C3670C62A81656000ACFA11 /* ARViewModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7C94D5472A02AB3A00AAC279 /* Ssok */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C94D5562A02AB3B00AAC279 /* Build configuration list for PBXNativeTarget "Ssok" */;
@@ -250,6 +343,14 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					7C3670B82A81654A00ACFA11 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 7C94D5472A02AB3A00AAC279;
+					};
+					7C3670C52A81656000ACFA11 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 7C94D5472A02AB3A00AAC279;
+					};
 					7C94D5472A02AB3A00AAC279 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -269,11 +370,27 @@
 			projectRoot = "";
 			targets = (
 				7C94D5472A02AB3A00AAC279 /* Ssok */,
+				7C3670B82A81654A00ACFA11 /* SsokTests */,
+				7C3670C52A81656000ACFA11 /* ARViewModelTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7C3670B72A81654A00ACFA11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7C3670C42A81656000ACFA11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C94D5462A02AB3A00AAC279 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,6 +425,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7C3670B52A81654A00ACFA11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C3670BC2A81654A00ACFA11 /* SsokTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7C3670C22A81656000ACFA11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C3670C92A81656000ACFA11 /* ARViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C94D5442A02AB3A00AAC279 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -352,7 +485,96 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7C3670BE2A81654A00ACFA11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7C94D5472A02AB3A00AAC279 /* Ssok */;
+			targetProxy = 7C3670BD2A81654A00ACFA11 /* PBXContainerItemProxy */;
+		};
+		7C3670CB2A81656000ACFA11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7C94D5472A02AB3A00AAC279 /* Ssok */;
+			targetProxy = 7C3670CA2A81656000ACFA11 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		7C3670BF2A81654A00ACFA11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DD63847N69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingtest.SsokTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ssok.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ssok";
+			};
+			name = Debug;
+		};
+		7C3670C02A81654A00ACFA11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DD63847N69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingtest.SsokTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ssok.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ssok";
+			};
+			name = Release;
+		};
+		7C3670CD2A81656000ACFA11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DD63847N69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingtest.ARViewModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ssok.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ssok";
+			};
+			name = Debug;
+		};
+		7C3670CE2A81656000ACFA11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DD63847N69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingtest.ARViewModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ssok.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ssok";
+			};
+			name = Release;
+		};
 		7C94D5542A02AB3B00AAC279 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -540,6 +762,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7C3670C12A81654A00ACFA11 /* Build configuration list for PBXNativeTarget "SsokTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C3670BF2A81654A00ACFA11 /* Debug */,
+				7C3670C02A81654A00ACFA11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7C3670CC2A81656000ACFA11 /* Build configuration list for PBXNativeTarget "ARViewModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C3670CD2A81656000ACFA11 /* Debug */,
+				7C3670CE2A81656000ACFA11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7C94D5432A02AB3900AAC279 /* Build configuration list for PBXProject "Ssok" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
