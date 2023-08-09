@@ -153,7 +153,7 @@ struct MissionEndingView: View {
                                       state: $state,
                                       largePearlIndex: $largePearlIndex)
                 case .smile, .blink:
-                    MissionSmileView(arViewState:
+                    MissionSmileView(title:
                                      random.randomWhat.missionDetail[MissionDetail.arState] ?? "",
                                      state: $state,
                                      largePearlIndex: $largePearlIndex
