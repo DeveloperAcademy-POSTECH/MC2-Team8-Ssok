@@ -5,7 +5,7 @@
 import AVFoundation
 import Speech
 import SwiftUI
-actor SpeechViewModel: ObservableObject {
+class SpeechViewModel: ObservableObject {
     enum RecognizerError: Error {
         case nilRecognizer
         case notAuthorizedToRecognize
@@ -25,11 +25,11 @@ actor SpeechViewModel: ObservableObject {
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var task: SFSpeechRecognitionTask?
     private var recognizer: SFSpeechRecognizer?
-    @MainActor @Published var isComplete = false
-    @MainActor @Published var isWrong = false
-    @MainActor @Published var progressTime = 100.0
-    @MainActor @Published var transcript = ""
-    private var currentlangague : String?
+    @Published var isComplete = false
+    @Published var isWrong = false
+    @Published var progressTime = 100.0
+    @Published var transcript = ""
+
     init() {
         Task {
             do {
@@ -45,57 +45,53 @@ actor SpeechViewModel: ObservableObject {
         }
     }
 
-    @MainActor func startTranscribing(language: String) {
+    func startTranscribing(language: String) {
         Task {
-            await transcribe(language: language)
+            try await transcribe(language: language)
         }
     }
 
-    @MainActor func retryBtnTap() {
-        DispatchQueue.main.async {
-            self.isWrong = false
-            self.progressTime = 100.0
-        }
-        transcript = ""
+    func retryBtnTap() {
+        self.isWrong = false
+        self.progressTime = 100.0
+        self.transcript = ""
     }
-
-    @MainActor func missionFail() {
+    
+    func missionFail() {
         DispatchQueue.main.async {
             self.isWrong = true
         }
         stopTranscript()
     }
 
-    @MainActor func stopTranscript() {
-        Task {
-            await recognizerReset()
-        }
+    func stopTranscript() {
+        recognizerReset()
     }
 
-    @MainActor func completeMission() {
+    func completeMission() {
         DispatchQueue.main.async {
-            self.isComplete  = true
+            self.isComplete = true
         }
     }
 
-    @MainActor func isCorrectResult(answerText : String) -> Bool {
-          let cleanedTranscript = transcript
-              .replacingOccurrences(of: " ", with: "")
-              .replacingOccurrences(of: ",", with: "")
-          if answerText
-              .replacingOccurrences(of: " ", with: "")
-              .replacingOccurrences(of: ",", with: "") == cleanedTranscript {
-                return true
-          }
+    func isCorrectResult(answerText : String) -> Bool {
+        let cleanedTranscript = transcript
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: ",", with: "")
+        if answerText
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: ",", with: "") == cleanedTranscript {
+            return true
+        }
         return false
-      }
+    }
 
-    @MainActor func updateProgressTime(speechTime: Double) {
+    func updateProgressTime(speechTime: Double) {
         if progressTime > 0 {
             progressTime -= 0.1 * (100 / speechTime)
         }
     }
-    private func transcribe(language: String) {
+    private func transcribe(language: String) async throws {
         recognizer = language == "English" ?
         SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
         : SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
@@ -114,8 +110,8 @@ actor SpeechViewModel: ObservableObject {
             self.task = recognizer.recognitionTask(
                 with: request,
                 resultHandler: { [weak self] result, error in
-                 self?.recognitionHandler(audioEngine: audioEngine, result: result, error: error)
-            })
+                    self?.recognitionHandler(audioEngine: audioEngine, result: result, error: error)
+                })
         } catch {
             self.recognizerReset()
             self.showErrorText(error)
@@ -142,40 +138,33 @@ actor SpeechViewModel: ObservableObject {
             .installTap(onBus: 0,
                         bufferSize: 1024,
                         format: recordingFormat) {(buffer: AVAudioPCMBuffer, _: AVAudioTime) in
-            request.append(buffer)
-        }
+                request.append(buffer)
+            }
         audioEngine.prepare()
         try audioEngine.start()
         return (audioEngine, request)
     }
 
-    nonisolated private func recognitionHandler(audioEngine: AVAudioEngine,
-                                                result: SFSpeechRecognitionResult?, error: Error?) {
+    private func recognitionHandler(audioEngine: AVAudioEngine,
+                                    result: SFSpeechRecognitionResult?,
+                                    error: Error?) {
         if error != nil {
             audioEngine.stop()
             audioEngine.inputNode.removeTap(onBus: 0)
         }
         if let result {
-            showText(result.bestTranscription.formattedString)
+            transcript = result.bestTranscription.formattedString
         }
     }
 
-    nonisolated private func showText(_ message: String) {
-        Task { @MainActor in
-            transcript = message
-        }
-    }
-
-    nonisolated private func showErrorText(_ error: Error) {
+    private func showErrorText(_ error: Error) {
         var errorMessage = ""
         if let error = error as? RecognizerError {
             errorMessage += error.message
         } else {
             errorMessage += error.localizedDescription
         }
-        Task { @MainActor [errorMessage] in
             transcript = "<< \(errorMessage) >>"
-        }
     }
 }
 

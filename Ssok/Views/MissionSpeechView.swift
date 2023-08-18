@@ -27,75 +27,9 @@ struct MissionSpeechView: View {
                                description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요.")
                 MissionTitleView(missionTitle: missionTitle,
                                  missionColor: Color("MissionVoice"))
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .padding(.horizontal, UIScreen.getWidth(40))
-                        .foregroundColor(.white)
-                        .shadow(color: Color(.black).opacity(0.2), radius: 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .padding(.horizontal, UIScreen.getWidth(50))
-                                .foregroundColor(.white)
-                                .shadow(color: Color(.black).opacity(0.2), radius: 8)
-                                .offset(y: 12)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .padding(.horizontal,UIScreen.getWidth(60))
-                                        .foregroundColor(.white)
-                                        .shadow(color: Color(.black).opacity(0.2), radius: 8)
-                                        .offset(y: 22)
-                                )
-                        )
-                    VStack(spacing: 20) {
-                        Text("따라 읽어요")
-                            .font(Font.custom13semibold())
-                            .padding(.horizontal, UIScreen.getWidth(9))
-                            .padding(.vertical, UIScreen.getHeight(4))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .stroke(Color("Orange"), lineWidth: 1.5)
-                            )
-                            .foregroundColor(Color("Orange"))
-                        Text(answerText)
-                            .font(Font.custom40heavy())
-                            .minimumScaleFactor(0.1)
-                            .multilineTextAlignment(.center)
-                            .lineLimit(2)
-                            .padding(.horizontal,UIScreen.getWidth(65))
-                    }
-                }
+                makeGuideView()
                 .padding(.top,UIScreen.getHeight(40))
-                ZStack {
-                    Image("imgSpeeching")
-                        .resizable()
-                        .padding(.horizontal,UIScreen.getWidth(40))
-                        .shadow(color: Color("Orange").opacity(0.5), radius: 5)
-                    VStack {
-                        Text("내 발음")
-                            .font(Font.custom13semibold())
-                            .padding(.horizontal, UIScreen.getWidth(10))
-                            .padding(.vertical, UIScreen.getHeight(4))
-                            .background(Color("Orange"))
-                            .cornerRadius(15)
-                            .foregroundColor(.white)
-                        Text(speechViewModel.transcript.isEmpty ?
-                             "문장을 따라 읽어주세요" : speechViewModel.transcript)
-                        .opacity(speechViewModel.transcript.isEmpty ? 0.25 : 1.0)
-                        .font(Font.custom40heavy())
-                        .minimumScaleFactor(0.1)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(speechViewModel.transcript.isEmpty ? 1 : 2)
-                        .padding(.horizontal, UIScreen.getWidth(10))
-                        Text("❌ 제시어와 달라요 다시 읽어 주세요 ❌")
-                            .font(Font.custom13semibold())
-                            .padding(.vertical, UIScreen.getHeight(2))
-                            .background(Color("LightRed"))
-                            .foregroundColor(Color("Red"))
-                            .opacity(speechViewModel.isWrong ? 1 : 0)
-                    }
-                    .padding(.top,UIScreen.getHeight(30))
-                    .padding(.horizontal, UIScreen.getWidth(50))
-                }
+                makeSTTView()
                 .padding(.top, UIScreen.getHeight(25))
                 .padding(.bottom,UIScreen.getHeight(20))
                 
@@ -155,6 +89,7 @@ struct MissionSpeechView: View {
                 queue.async {
                     if speechViewModel.isCorrectResult(answerText: answerText) {
                         checkTimer?.invalidate()
+                        
                         speechViewModel.completeMission()
                     }
                 }
@@ -163,6 +98,83 @@ struct MissionSpeechView: View {
         .navigationBarHidden(true)
         .onDisappear {
             speechViewModel.stopTranscript()
+        }
+    }
+}
+
+extension MissionSpeechView {
+
+    func makeGuideView() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .padding(.horizontal, UIScreen.getWidth(40))
+                .foregroundColor(.white)
+                .shadow(color: Color(.black).opacity(0.2), radius: 8)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .padding(.horizontal, UIScreen.getWidth(50))
+                        .foregroundColor(.white)
+                        .shadow(color: Color(.black).opacity(0.2), radius: 8)
+                        .offset(y: 12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .padding(.horizontal,UIScreen.getWidth(60))
+                                .foregroundColor(.white)
+                                .shadow(color: Color(.black).opacity(0.2), radius: 8)
+                                .offset(y: 22)
+                        )
+                )
+            VStack(spacing: 20) {
+                Text("따라 읽어요")
+                    .font(Font.custom13semibold())
+                    .padding(.horizontal, UIScreen.getWidth(9))
+                    .padding(.vertical, UIScreen.getHeight(4))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color("Orange"), lineWidth: 1.5)
+                    )
+                    .foregroundColor(Color("Orange"))
+                Text(answerText)
+                    .font(Font.custom40heavy())
+                    .minimumScaleFactor(0.1)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .padding(.horizontal,UIScreen.getWidth(65))
+            }
+        }
+    }
+
+    func makeSTTView() -> some View {
+        ZStack {
+            Image("imgSpeeching")
+                .resizable()
+                .padding(.horizontal,UIScreen.getWidth(40))
+                .shadow(color: Color("Orange").opacity(0.5), radius: 5)
+            VStack {
+                Text("내 발음")
+                    .font(Font.custom13semibold())
+                    .padding(.horizontal, UIScreen.getWidth(10))
+                    .padding(.vertical, UIScreen.getHeight(4))
+                    .background(Color("Orange"))
+                    .cornerRadius(15)
+                    .foregroundColor(.white)
+                Text(speechViewModel.transcript.isEmpty ?
+                     "문장을 따라 읽어주세요" : speechViewModel.transcript)
+                .opacity(speechViewModel.transcript.isEmpty ? 0.25 : 1.0)
+                .font(Font.custom40heavy())
+                .minimumScaleFactor(0.1)
+                .multilineTextAlignment(.center)
+                .lineLimit(speechViewModel.transcript.isEmpty ? 1 : 2)
+                .padding(.horizontal, UIScreen.getWidth(10))
+                Text("❌ 제시어와 달라요 다시 읽어 주세요 ❌")
+                    .font(Font.custom13semibold())
+                    .padding(.vertical, UIScreen.getHeight(2))
+                    .background(Color("LightRed"))
+                    .foregroundColor(Color("Red"))
+                    .opacity(speechViewModel.isWrong ? 1 : 0)
+            }
+            .padding(.top,UIScreen.getHeight(30))
+            .padding(.horizontal, UIScreen.getWidth(50))
         }
     }
 }
