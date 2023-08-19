@@ -1,9 +1,22 @@
-import Foundation
+//
+//  AddMemberViewModelTests.swift
+//  SsokTests
+//
+//  Created by 김민 on 2023/05/04.
+//
+
+import SwiftUI
+
+enum TextFieldSubmissionState {
+    case invalidName
+    case overMemberCountLimit
+    case success
+}
 
 class AddMemberViewModel: ObservableObject {
 
     @Published var memberName = ""
-    @Published var isSubmitFailAlertShowing = false
+    @Published var isInvalidNameAlertShowing = false
     @Published var isCountLimitAlertShowing = false
     @Published var members: [Member] = [] {
         didSet {
@@ -41,14 +54,6 @@ class AddMemberViewModel: ObservableObject {
         }
     }
 
-    func plusButtonDidTap() {
-        if isMemberCountOverLimit {
-            isCountLimitAlertShowing = true
-        } else {
-            appendMember(memberName)
-        }
-    }
-
     func isMemberNameInvalid() -> Bool {
         guard !memberName.isEmpty,
               !members.contains(where: { $0.name == memberName }),
@@ -57,10 +62,21 @@ class AddMemberViewModel: ObservableObject {
     }
 
     func submitTextField() {
+        var textFieldSubmissionState = TextFieldSubmissionState.success
+
         if isMemberNameInvalid() {
-            isSubmitFailAlertShowing = true
-        } else {
-            plusButtonDidTap()
+            textFieldSubmissionState = .invalidName
+        } else if isMemberCountOverLimit {
+            textFieldSubmissionState = .overMemberCountLimit
+        }
+
+        switch textFieldSubmissionState {
+        case .invalidName:
+            isInvalidNameAlertShowing = true
+        case .overMemberCountLimit:
+            isCountLimitAlertShowing = true
+        case .success:
+            appendMember(memberName)
         }
     }
 }

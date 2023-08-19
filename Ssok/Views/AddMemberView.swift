@@ -36,9 +36,9 @@ struct AddMemberView: View {
                     viewModel.submitTextField()
                     viewModel.memberName.removeAll()
                 }
-                .alert("이름을 다시 확인해주세요", isPresented: $viewModel.isSubmitFailAlertShowing) {
+                .alert("이름을 다시 확인해주세요", isPresented: $viewModel.isInvalidNameAlertShowing) {
                     Button("OK") {
-                        viewModel.isSubmitFailAlertShowing = false
+                        viewModel.isInvalidNameAlertShowing = false
                     }
                 } message: {
                     Text("입력하신 이름을 확인해주세요.\n이름은 한글만 가능합니다.")
