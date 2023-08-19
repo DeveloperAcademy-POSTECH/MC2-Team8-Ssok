@@ -17,15 +17,14 @@ class AddMemberViewModel: ObservableObject {
     }
 
     init() {
-        fetchMembers()
+        members = getMembers()
     }
 
-    func fetchMembers() {
+    func getMembers() -> [Member] {
         guard
             let data = UserDefaults.standard.data(forKey: memberDataKey),
-            let savedData = try? JSONDecoder().decode([Member].self, from: data) else { return }
-        members = savedData
-
+            let savedData = try? JSONDecoder().decode([Member].self, from: data) else { return [] }
+        return savedData
     }
 
     func appendMember(_ memberName: String) {
