@@ -22,23 +22,18 @@ final class AddMemberViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-//    func testIsMemberCountOverLimit() {
-//        addMemberViewModel.members = [
-//            Member(name: "소다"),
-//            Member(name: "지니"),
-//            Member(name: "스낵"),
-//            Member(name: "씨제이"),
-//            Member(name: "핀"),
-//            Member(name: "선데이"),
-//            Member(name: "워니")
-//        ]
-//
-//        let isOverLimit = addMemberViewModel.isMemberCountOverLimit
-//        XCTAssertEqual(isOverLimit, true)
-//    }
+    func testIsMemberCountOverLimit() {
+        for memberNumber in 0...6 {
+            addMemberViewModel.appendMember("member\(memberNumber)")
+        }
+
+        let isOverLimit = addMemberViewModel.isMemberCountOverLimit
+        XCTAssertEqual(isOverLimit, true)
+    }
 
     func testAppendMember() {
         addMemberViewModel.appendMember("소다")
+
         XCTAssertTrue(!addMemberViewModel.members.isEmpty)
         XCTAssertTrue(addMemberViewModel.members.contains { $0.name == "소다" })
     }
@@ -56,11 +51,7 @@ final class AddMemberViewModelTests: XCTestCase {
     }
 
     func testSaveMembers() {
-        let members = [
-            Member(name: "소다"),
-            Member(name: "지니")
-        ]
-
+        let members = [Member(name: "소다"), Member(name: "지니")]
         addMemberViewModel.members = members
 
         let savedMembers = addMemberViewModel.getMembers()
@@ -68,25 +59,58 @@ final class AddMemberViewModelTests: XCTestCase {
         XCTAssertEqual(members, savedMembers)
     }
 
-//    func testIsMemberNameNotKorean() {
-//        addMemberViewModel.memberName = "ㅇㄴㄹ"
-//        let isInvalid = addMemberViewModel.isMemberNameInvalid()
-//
-//        XCTAssertTrue(isInvalid)
-//    }
-//
-//    func testIsMemberNameEmpty() {
-//        addMemberViewModel.memberName = ""
-//        let isInvalid = addMemberViewModel.isMemberNameInvalid()
-//
-//        XCTAssertTrue(isInvalid)
-//    }
-//
-//    func testIsMemberNameOverlapped() {
-//        addMemberViewModel.members = [Member(name: "소다")]
-//        addMemberViewModel.memberName = "소다"
-//        let isInvalid = addMemberViewModel.isMemberNameInvalid()
-//
-//        XCTAssertTrue(isInvalid)
-//    }
+    func testIsMemberNameInvalid() {
+        addMemberViewModel.appendMember("소다")
+
+        addMemberViewModel.memberName = ""
+        XCTAssertTrue(addMemberViewModel.isMemberNameInvalid())
+
+        addMemberViewModel.memberName = "소다"
+        XCTAssertTrue(addMemberViewModel.isMemberNameInvalid())
+
+        addMemberViewModel.memberName = "Soda"
+        XCTAssertTrue(addMemberViewModel.isMemberNameInvalid())
+    }
+
+    func testSetTextFieldSubmissionState() {
+        for memberNumber in 0..<6 {
+            addMemberViewModel.appendMember("member\(memberNumber)")
+        }
+        addMemberViewModel.memberName = "소다"
+
+        XCTAssertTrue(addMemberViewModel.isMemberCountOverLimit)
+        XCTAssertEqual(addMemberViewModel.setTextFieldSubmissionState(),
+                       TextFieldSubmissionState.overMemberCountLimit)
+
+        addMemberViewModel.memberName = "Soda"
+        addMemberViewModel.members.removeAll()
+
+        XCTAssertTrue(addMemberViewModel.isMemberNameInvalid())
+        XCTAssertEqual(addMemberViewModel.setTextFieldSubmissionState(), .invalidName)
+
+        addMemberViewModel.memberName = "지니"
+
+        XCTAssertFalse(addMemberViewModel.isMemberCountOverLimit)
+        XCTAssertFalse(addMemberViewModel.isMemberNameInvalid())
+        XCTAssertEqual(addMemberViewModel.setTextFieldSubmissionState(), .success)
+    }
+
+    func testSubmitTextField() {
+        for memberNumber in 0..<6 {
+            addMemberViewModel.appendMember("member\(memberNumber)")
+        }
+        addMemberViewModel.memberName = "소다"
+        addMemberViewModel.submitTextField()
+        XCTAssertTrue(addMemberViewModel.isMemberCountOverLimit)
+
+        addMemberViewModel.memberName = "Soda"
+        addMemberViewModel.members.removeAll()
+        addMemberViewModel.submitTextField()
+        XCTAssertTrue(addMemberViewModel.isInvalidNameAlertShowing)
+
+        addMemberViewModel.memberName = "지니"
+        addMemberViewModel.submitTextField()
+        XCTAssertFalse(addMemberViewModel.members.isEmpty)
+        XCTAssertTrue(addMemberViewModel.members.contains { $0.name == "지니" })
+    }
 }

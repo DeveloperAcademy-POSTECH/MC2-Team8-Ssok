@@ -8,8 +8,8 @@
 import SwiftUI
 
 enum TextFieldSubmissionState {
-    case invalidName
     case overMemberCountLimit
+    case invalidName
     case success
 }
 
@@ -62,21 +62,25 @@ class AddMemberViewModel: ObservableObject {
     }
 
     func submitTextField() {
-        var textFieldSubmissionState = TextFieldSubmissionState.success
-
-        if isMemberNameInvalid() {
-            textFieldSubmissionState = .invalidName
-        } else if isMemberCountOverLimit {
-            textFieldSubmissionState = .overMemberCountLimit
-        }
+        let textFieldSubmissionState = setTextFieldSubmissionState()
 
         switch textFieldSubmissionState {
-        case .invalidName:
-            isInvalidNameAlertShowing = true
         case .overMemberCountLimit:
             isCountLimitAlertShowing = true
+        case .invalidName:
+            isInvalidNameAlertShowing = true
         case .success:
             appendMember(memberName)
+        }
+    }
+
+    func setTextFieldSubmissionState() -> TextFieldSubmissionState {
+        if isMemberCountOverLimit {
+            return .overMemberCountLimit
+        } else if isMemberNameInvalid() {
+            return .invalidName
+        } else {
+            return .success
         }
     }
 }
