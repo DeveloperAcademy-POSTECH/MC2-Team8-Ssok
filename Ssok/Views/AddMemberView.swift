@@ -34,22 +34,23 @@ struct AddMemberView: View {
                 }
                 .accentColor(.orange)
                 .onSubmit {
-                    viewModel.textFieldSubmit()
+                    viewModel.submitTextField()
+                    viewModel.memberName.removeAll()
                 }
-                .alert("이름을 다시 확인해주세요", isPresented: $viewModel.isSubmitFail) {
+                .alert("이름을 다시 확인해주세요", isPresented: $viewModel.isSubmitFailAlertShowing) {
                     Button("OK") {
-                        viewModel.isSubmitFail = false
+                        viewModel.isSubmitFailAlertShowing = false
                     }
                 } message: {
                     Text("입력하신 이름을 확인해주세요.\n이름은 한글만 가능합니다.")
                 }
-                .alert("인원은 최대 6명까지 가능합니다.", isPresented: $viewModel.isTotalAlertShowing) {
+                .alert("인원은 최대 6명까지 가능합니다.", isPresented: $viewModel.isCountLimitAlertShowing) {
                     Button("OK") {
-                        viewModel.isTotalAlertShowing = false
+                        viewModel.isCountLimitAlertShowing = false
                         isFocused = false
                     }
                 } message: {
-                    Text("인원은 최대 6명까지만\n선택 가능합니다")
+                    Text("인원은 최대 6명까지만\n선택 가능합니다.")
                 }
                 .padding(.horizontal, UIScreen.getWidth(20))
                 .padding(.top, UIScreen.getHeight(15))
