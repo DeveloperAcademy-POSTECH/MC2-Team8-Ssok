@@ -3,35 +3,50 @@ import Foundation
 class AddMemberViewModel: ObservableObject {
 
     @Published var memberName = ""
-    @Published var isSubmitFailAlertShowing = false // 이름체크
+    @Published var isSubmitFailAlertShowing = false
     @Published var isCountLimitAlertShowing = false
-    @Published var members = [Member]()
+    @Published var members: [Member] = [] {
+        didSet {
+            saveMembers()
+        }
+    }
+
+    let memberDataKey = "members"
     var isMemberCountLimitOver: Bool {
         return members.count >= 6 ? true : false
     }
 
-    func setMemberData() {
-        if let data = UserDefaults.standard.value(forKey: "members") as? Data {
-            let decodedData = try? PropertyListDecoder().decode(Array<Member>.self, from: data)
-            members = decodedData ?? []
-        }
+    init() {
+        fetchMembers()
     }
 
-    func appendMembers(_ memberName: String) {
+    func fetchMembers() {
+        guard
+            let data = UserDefaults.standard.data(forKey: memberDataKey),
+            let savedData = try? JSONDecoder().decode([Member].self, from: data) else { return }
+        members = savedData
+
+    }
+
+    func appendMember(_ memberName: String) {
         members.append(Member(name: memberName))
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
     }
 
-    func removeMembers(at offsets: IndexSet) {
+    func removeMember(at offsets: IndexSet) {
         members.remove(atOffsets: offsets)
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
+    }
+
+    func saveMembers() {
+        if let encodedData = try? JSONEncoder().encode(members) {
+            UserDefaults.standard.set(encodedData, forKey: memberDataKey)
+        }
     }
 
     func plusButtonDidTap() {
         if isMemberCountLimitOver {
             isCountLimitAlertShowing = true
         } else {
-            appendMembers(memberName)
+            appendMember(memberName)
         }
     }
 
