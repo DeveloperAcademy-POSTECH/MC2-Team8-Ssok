@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "41B88629-1EB6-40CB-B00F-3F79503C9B6C",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Ssok.xcodeproj",
+      "identifier" : "7C94D5472A02AB3A00AAC279",
+      "name" : "Ssok"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Ssok.xcodeproj",
+        "identifier" : "ABCCF5402A90D09800293B79",
+        "name" : "SsokTests"
+      }
+    }
+  ],
+  "version" : 1
+}

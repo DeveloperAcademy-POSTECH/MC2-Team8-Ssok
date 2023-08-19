@@ -93,6 +93,7 @@
 		ABCCF5412A90D09800293B79 /* SsokTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SsokTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCCF5432A90D09800293B79 /* SsokTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SsokTests.swift; sourceTree = "<group>"; };
 		ABCCF54A2A90D0B600293B79 /* AddMemberViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberViewModelTests.swift; sourceTree = "<group>"; };
+		ABCCF54D2A91001000293B79 /* Ssok.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Ssok.xctestplan; sourceTree = "<group>"; };
 		C71C86202A49E0AC00522E89 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		C74C18862A2859D500D69345 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C74DD5432A065B1500852B09 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 		7C94D53F2A02AB3900AAC279 = {
 			isa = PBXGroup;
 			children = (
+				ABCCF54D2A91001000293B79 /* Ssok.xctestplan */,
 				C74C18862A2859D500D69345 /* .swiftlint.yml */,
 				7C94D54A2A02AB3A00AAC279 /* Ssok */,
 				ABCCF5422A90D09800293B79 /* SsokTests */,
