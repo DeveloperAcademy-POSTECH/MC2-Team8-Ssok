@@ -18,7 +18,6 @@ struct AddMemberView: View {
     @State private var keyboardHeight: CGFloat = 0
 
     var body: some View {
-
         ZStack {
             VStack {
                 VStack(spacing: 0) {
@@ -63,7 +62,7 @@ struct AddMemberView: View {
                                     Text(member.name)
                                 }
                             }
-                            .onDelete(perform: viewModel.removeMembers)
+                            .onDelete(perform: viewModel.removeMember)
                         } header: {
                             Text("같이 할 사람들")
                                 .font(.system(size: UIScreen.getHeight(13)))
@@ -109,9 +108,6 @@ struct AddMemberView: View {
                 EditButton()
                     .foregroundColor(Color("Bg_bottom2"))
             }
-        }
-        .onAppear {
-            viewModel.setMemberData()
         }
         .onReceive(NotificationCenter.default.publisher(for:
                                                             UIResponder
