@@ -19,6 +19,4 @@ final class AddMemberViewModelTests: XCTestCase {
     override func tearDownWithError() throws {
         addMemberViewModel = nil
     }
-
-    
 }
