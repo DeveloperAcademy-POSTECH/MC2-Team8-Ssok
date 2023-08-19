@@ -12,7 +12,7 @@ class AddMemberViewModel: ObservableObject {
     }
 
     let memberDataKey = "members"
-    var isMemberCountLimitOver: Bool {
+    var isMemberCountOverLimit: Bool {
         return members.count >= 6 ? true : false
     }
 
@@ -42,7 +42,7 @@ class AddMemberViewModel: ObservableObject {
     }
 
     func plusButtonDidTap() {
-        if isMemberCountLimitOver {
+        if isMemberCountOverLimit {
             isCountLimitAlertShowing = true
         } else {
             appendMember(memberName)
