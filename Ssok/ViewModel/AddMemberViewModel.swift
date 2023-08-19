@@ -3,10 +3,12 @@ import Foundation
 class AddMemberViewModel: ObservableObject {
 
     @Published var memberName = ""
-    @Published var isSubmitFail = false
-    @Published var isTotalAlertShowing = false
-    @Published var isExistAlertShowing = false
+    @Published var isSubmitFailAlertShowing = false // 이름체크
+    @Published var isCountLimitAlertShowing = false
     @Published var members = [Member]()
+    var isMemberCountLimitOver: Bool {
+        return members.count >= 6 ? true : false
+    }
 
     func setMemberData() {
         if let data = UserDefaults.standard.value(forKey: "members") as? Data {
@@ -18,32 +20,33 @@ class AddMemberViewModel: ObservableObject {
     func appendMembers(_ memberName: String) {
         members.append(Member(name: memberName))
         UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
-
     }
 
     func removeMembers(at offsets: IndexSet) {
         members.remove(atOffsets: offsets)
         UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
-       
     }
 
     func plusButtonDidTap() {
-        if members.count >= 6 {
-            isTotalAlertShowing = true
+        if isMemberCountLimitOver {
+            isCountLimitAlertShowing = true
         } else {
             appendMembers(memberName)
         }
-        memberName = ""
     }
 
-    func textFieldSubmit() {
+    func isMemberNameInvalid() -> Bool {
         guard !memberName.isEmpty,
               !members.contains(where: { $0.name == memberName }),
-              memberName.isKorean else {
-            isSubmitFail = true
-            return
+              memberName.isKorean else { return true }
+        return false
+    }
+
+    func submitTextField() {
+        if isMemberNameInvalid() {
+            isSubmitFailAlertShowing = true
+        } else {
+            plusButtonDidTap()
         }
-        plusButtonDidTap()
-        isSubmitFail = false
     }
 }
