@@ -52,7 +52,7 @@ struct MissionSpeechView: View {
                             }
                     }
                     .onAppear {
-                        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + speechTime) {
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + speechTime) {
                             if (!speechViewModel.isCorrectResult(answerText: answerText)) {
                                 speechViewModel.missionFail()
                             }
@@ -84,20 +84,16 @@ struct MissionSpeechView: View {
         }
         .onAppear {
             speechViewModel.startTranscribing(language: language)
-            let queue = DispatchQueue.global()
             checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-                queue.async {
                     if speechViewModel.isCorrectResult(answerText: answerText) {
                         checkTimer?.invalidate()
-                        
                         speechViewModel.completeMission()
-                    }
                 }
             }
         }
         .navigationBarHidden(true)
         .onDisappear {
-            speechViewModel.stopTranscript()
+            speechViewModel.recognizerReset()
         }
     }
 }

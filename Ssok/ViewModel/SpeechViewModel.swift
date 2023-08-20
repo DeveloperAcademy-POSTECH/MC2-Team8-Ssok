@@ -21,9 +21,9 @@ class SpeechViewModel: ObservableObject {
         }
     }
     private var checkTimer : Timer?
-    private var audioEngine: AVAudioEngine?
-    private var request: SFSpeechAudioBufferRecognitionRequest?
-    private var task: SFSpeechRecognitionTask?
+    var audioEngine: AVAudioEngine?
+    var request: SFSpeechAudioBufferRecognitionRequest?
+    var task: SFSpeechRecognitionTask?
     private var recognizer: SFSpeechRecognizer?
     @Published var isComplete = false
     @Published var isWrong = false
@@ -58,20 +58,12 @@ class SpeechViewModel: ObservableObject {
     }
     
     func missionFail() {
-        DispatchQueue.main.async {
-            self.isWrong = true
-        }
-        stopTranscript()
-    }
-
-    func stopTranscript() {
+        self.isWrong = true
         recognizerReset()
     }
 
     func completeMission() {
-        DispatchQueue.main.async {
-            self.isComplete = true
-        }
+        self.isComplete = true
     }
 
     func isCorrectResult(answerText : String) -> Bool {
@@ -118,7 +110,7 @@ class SpeechViewModel: ObservableObject {
         }
     }
 
-    private func recognizerReset() {
+    func recognizerReset() {
         audioEngine?.stop()
         audioEngine = nil
         request = nil
@@ -164,7 +156,7 @@ class SpeechViewModel: ObservableObject {
         } else {
             errorMessage += error.localizedDescription
         }
-            transcript = "<< \(errorMessage) >>"
+        transcript = "<< \(errorMessage) >>"
     }
 }
 
