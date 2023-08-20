@@ -4,10 +4,28 @@
 
 <!-- <img width="1512" alt="image" src=""> -->
 <img src="https://github.com/DeveloperAcademy-POSTECH/MC2-Team8-Ssok/assets/54494793/057a3cc0-f292-4578-a8da-b68962f8eb63" height="500">
+</div>
 
+<br/>
 
-<br/><br/>
-    
+## 🐤 About Ssok
+쏘옥팀은 내가 아닌 다른 누군가를 위한 의미있는 경험을 만들어주는 서비스를 만들자는 취지로 모였습니다.<br> 재미있게 모두가 친해질 수 있는 앱을 만들고자 했습니다.<br>
+그래서 완성된 Ssok은  `버블티에서 빨대로 펄을 뽑듯 랜덤 미션이 나오는 앱` 입니다.<br>
+
+<br>
+
+</div>
+
+### 🧑‍💻 Authors
+
+<div align="center"> 
+  
+| [CJ](https://github.com/ChangJin-Lee) |  [Sunday](https://github.com/sunhofficial) | [Soda](https://github.com/minnnidev) | [Pin](https://github.com/pingse) | [Snack](https://github.com/snacknam)  | [Jinnie](https://github.com/wldms3632)  | 
+|:---:|:---:|:---:|:---:|:---:|:---:|
+|<img width="120" alt="CJ" src="https://github.com/DeveloperAcademy-POSTECH/MC2-Team8-Ssok/assets/54494793/b03b4ddd-6a1a-4f21-a82a-5430ad2f78e6">|<img width="120" alt="sunday" src="https://user-images.githubusercontent.com/54494793/236249514-20625882-8c70-4835-b081-958360a578ed.png">|<img width="120" alt="soda" src="https://user-images.githubusercontent.com/54494793/236249508-466a7f22-9d1e-4765-842b-dccfc0ffc4e7.png">|<img width="120" alt="pin" src="https://user-images.githubusercontent.com/54494793/236249499-c216965e-333a-495a-a9f5-e9842fc47c28.png">|<img width="120" alt="snack" src="https://user-images.githubusercontent.com/54494793/236249410-4011ee85-efe0-4ecb-bf06-da27a7073624.png">|<img width="120" alt="jinnie" src="https://user-images.githubusercontent.com/54494793/236249517-7aff696a-458f-4145-8a25-74d8e0e763b9.png">|
+| Tech | Tech | Tech | Tech | Tech | Design      
+
+  
 </div>
 
 <!-- ### 📱 Screenshots
@@ -87,7 +105,7 @@ Ssok
         └── MissionTopView.swift
         └── MissionTitleView.swift
         └── MissionCompleteView.swift
-        └── MissionCameraCompleteView
+        └── MissionTypeView.swift
     └── IntroView.swift
     └── AddMemberView.swift
     └── BottleView.swift
@@ -105,17 +123,6 @@ Ssok
 
 <br/>
 
-  
-### 🧑‍💻 Authors
-
-<div align="center"> 
-  
-| [CJ](https://github.com/ChangJin-Lee) |  [Sunday](https://github.com/sunhofficial) | [SODA](https://github.com/minnnidev) | [Pin](https://github.com/pingse) | [Snack](https://github.com/snacknam)  | [Jinnie](https://github.com/wldms3632)  | 
-|:---:|:---:|:---:|:---:|:---:|:---:|
-|<img width="120" alt="CJ" src="https://github.com/DeveloperAcademy-POSTECH/MC2-Team8-Ssok/assets/54494793/b03b4ddd-6a1a-4f21-a82a-5430ad2f78e6">|<img width="120" alt="sunday" src="https://user-images.githubusercontent.com/54494793/236249514-20625882-8c70-4835-b081-958360a578ed.png">|<img width="120" alt="soda" src="https://user-images.githubusercontent.com/54494793/236249508-466a7f22-9d1e-4765-842b-dccfc0ffc4e7.png">|<img width="120" alt="pin" src="https://user-images.githubusercontent.com/54494793/236249499-c216965e-333a-495a-a9f5-e9842fc47c28.png">|<img width="120" alt="snack" src="https://user-images.githubusercontent.com/54494793/236249410-4011ee85-efe0-4ecb-bf06-da27a7073624.png">|<img width="120" alt="jinnie" src="https://user-images.githubusercontent.com/54494793/236249517-7aff696a-458f-4145-8a25-74d8e0e763b9.png">|
-
-  
-</div>
 
 <br/>
 
