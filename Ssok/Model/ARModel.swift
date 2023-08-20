@@ -9,7 +9,7 @@ import Foundation
 import RealityKit
 import ARKit
 
-enum ArViewController{
+enum ArViewController {
     case smile
     case blink
 }
