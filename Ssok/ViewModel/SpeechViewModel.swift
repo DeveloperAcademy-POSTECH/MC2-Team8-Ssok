@@ -26,7 +26,7 @@ class SpeechViewModel: ObservableObject {
     var request: SFSpeechAudioBufferRecognitionRequest?
     var task: SFSpeechRecognitionTask?
     var language: String?
-    private var currentLocaleIdentifier: String {
+    var currentLocaleIdentifier: String {
         return (language == "English") ? "en-US" : "ko-KR"
     }
     var recognizer: SFSpeechRecognizer? {

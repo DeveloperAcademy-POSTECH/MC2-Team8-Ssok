@@ -12,13 +12,6 @@ import Speech
 final class SpeechViewTestCode: XCTestCase {
     private var speechViewModel: SpeechViewModel!
 
-//    class MockViewModel: SpeechViewModel {
-//        override func startTranscribing(language: String) {
-//            <#code#>
-//        }
-//
-//    }
-
     override func setUpWithError() throws {
         try super.setUpWithError()
         speechViewModel = SpeechViewModel()
@@ -71,6 +64,5 @@ final class SpeechViewTestCode: XCTestCase {
         speechViewModel.missionFail()
         XCTAssertTrue(speechViewModel.isWrong)
     }
-
 
 }
