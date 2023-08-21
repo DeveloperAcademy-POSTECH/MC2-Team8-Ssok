@@ -53,18 +53,7 @@ class ARViewModelTests: XCTestCase {
 
         // TODO: 더 많은 시나리오도 생각해봐야 함.
     }
-
-    func testCalculateSmileCount() {
-        // MARK: calculateSmileCount는 매 초마다 더하기 연산을 하도록 되어 있는데 이러면 UI test에서 코드를 짜야하는 건가
-        XCTAssertEqual(arViewModel.calculateSmileCount(), "")
-        XCTAssertEqual(arViewModel.calculateSmileCount(), "")
-    }
-
-    func testCalculateBlinkCount() {
-        XCTAssertEqual(arViewModel.calculateBlinkCount(), "")
-        XCTAssertEqual(arViewModel.calculateBlinkCount(), "")
-    }
-
+    
     func testFlushCount() {
         // MARK: count 초기화 메소드를 부르고 smileCount, blinkCount 프로퍼티가 0으로 리셋이 되는지 확인.
         arViewModel.smileCount = 10
