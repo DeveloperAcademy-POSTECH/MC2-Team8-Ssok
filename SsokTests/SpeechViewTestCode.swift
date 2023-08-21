@@ -7,9 +7,17 @@
 
 import XCTest
 @testable import Ssok
+import Speech
 
 final class SpeechViewTestCode: XCTestCase {
     private var speechViewModel: SpeechViewModel!
+
+//    class MockViewModel: SpeechViewModel {
+//        override func startTranscribing(language: String) {
+//            <#code#>
+//        }
+//
+//    }
 
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -19,14 +27,6 @@ final class SpeechViewTestCode: XCTestCase {
     override func tearDown() {
         speechViewModel = nil
         super.tearDown()
-    }
-
-    func testHasAuthorizationToRecognize() {
-
-    }
-
-    func testShowErrorText() {
-        speechViewModel.enum
     }
 
     func testUpdateProgressTime() {
@@ -72,8 +72,5 @@ final class SpeechViewTestCode: XCTestCase {
         XCTAssertTrue(speechViewModel.isWrong)
     }
 
-//    func testShowErrorText() {
-//        let error = recognizererr.recognizerRes
-//    }
 
 }

@@ -5,6 +5,7 @@
 import AVFoundation
 import Speech
 import SwiftUI
+
 class SpeechViewModel: ObservableObject {
     enum RecognizerError: Error {
         case nilRecognizer
@@ -24,7 +25,14 @@ class SpeechViewModel: ObservableObject {
     var audioEngine: AVAudioEngine?
     var request: SFSpeechAudioBufferRecognitionRequest?
     var task: SFSpeechRecognitionTask?
-    private var recognizer: SFSpeechRecognizer?
+    var language: String?
+    private var currentLocaleIdentifier: String {
+        return (language == "English") ? "en-US" : "ko-KR"
+    }
+    var recognizer: SFSpeechRecognizer? {
+        return SFSpeechRecognizer(locale: Locale(identifier: currentLocaleIdentifier))
+    }
+
     @Published var isComplete = false
     @Published var isWrong = false
     @Published var progressTime = 100.0
@@ -84,9 +92,6 @@ class SpeechViewModel: ObservableObject {
         }
     }
     private func transcribe(language: String) async throws {
-        recognizer = language == "English" ?
-        SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
-        : SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
         guard let recognizer = recognizer else {
             showErrorText(RecognizerError.nilRecognizer)
             return

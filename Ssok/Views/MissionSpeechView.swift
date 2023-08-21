@@ -83,6 +83,7 @@ struct MissionSpeechView: View {
             }
         }
         .onAppear {
+            speechViewModel.language = language
             speechViewModel.startTranscribing(language: language)
             checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                     if speechViewModel.isCorrectResult(answerText: answerText) {

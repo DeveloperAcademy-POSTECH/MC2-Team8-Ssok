@@ -18,7 +18,7 @@ class StrawViewModel: ObservableObject {
     @Published var progress = 0.0
 
     var maxProgress: Double {
-        return min(progress > 0.99 ? 1: progress, 1.0)
+        return progress > 0.99 ? 1: progress
     }
     
     init() {
